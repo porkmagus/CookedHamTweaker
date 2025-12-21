@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>🐷 CookedHamTweaker v3 – Full Tweaks</title>
+    <title>🐷 CookedHamTweaker v1 – Windows Optimization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -387,6 +387,63 @@
             justify-content: flex-end;
         }
 
+        .github-link {
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .github-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(251, 113, 133, 0.15), rgba(249, 115, 22, 0.15));
+            border: 1px solid rgba(251, 113, 133, 0.4);
+            color: #fb7185;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .github-link a:hover {
+            background: linear-gradient(135deg, rgba(251, 113, 133, 0.25), rgba(249, 115, 22, 0.25));
+            border-color: rgba(251, 113, 133, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(251, 113, 133, 0.3);
+        }
+
+        .changelog {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .changelog-version {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(251, 113, 133, 0.2), rgba(249, 115, 22, 0.2));
+            border: 1px solid rgba(251, 113, 133, 0.3);
+            color: #fb7185;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .changelog-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.72rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        .changelog-list li {
+            padding: 2px 0;
+        }
+
         /* FLOATING PIGS */
         .floating-pig {
             position: fixed;
@@ -432,6 +489,96 @@
                 transform: translateY(0) translateX(0) scale(1);
             }
         }
+
+        .github-link {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .github-link a {
+            color: #f97316;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .github-link a:hover {
+            color: #fb7185;
+        }
+
+        .github-link a:after {
+            content: " ";
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #f97316, transparent);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 720px) {
+            .app-shell {
+                padding: 24px 12px 32px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pill-row {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .code-panel {
+                padding: 12px;
+            }
+        }
+
+        .changelog {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .changelog-version {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #f97316;
+        }
+
+        .changelog-list {
+            list-style-type: none;
+            padding-left: 0;
+            color: #e5e7eb;
+        }
+
+        .changelog-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+        }
+
+        .changelog-list li:before {
+            content: "✔️";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 0.9rem;
+            color: #4ade80;
+        }
     </style>
 </head>
 <body>
@@ -439,7 +586,7 @@
     <header>
         <div class="pig-badge">🐷</div>
         <div class="headline">
-            <h1>CookedHamTweaker v3</h1>
+            <h1>CookedHamTweaker v1</h1>
             <small>Opinionated Windows 11 privacy, debloat, and performance script generator.</small>
         </div>
     </header>
@@ -520,6 +667,22 @@
                 <button class="btn-ghost" type="button" onclick="copyScript()">📋 Copy</button>
                 <button class="btn-primary" type="button" onclick="downloadScript()">⬇️ Download .ps1</button>
             </div>
+            <div class="github-link">
+                <a href="https://github.com/porkmagus/CookedHamTweaker" target="_blank" rel="noopener noreferrer">
+                    🐷 Fork this pig on GitHub 🐽
+                </a>
+            </div>
+            <div class="changelog">
+                <div class="changelog-version">v1.0.0</div>
+                <ul class="changelog-list">
+                    <li>🐷 Initial release of CookedHamTweaker v1</li>
+                    <li>🔒 Added 68 privacy tweaks</li>
+                    <li>🌐 Added 56 network optimization tweaks</li>
+                    <li>🧹 Added 60 bloatware removal options</li>
+                    <li>⚡ Added 65 general performance tweaks</li>
+                    <li>🚀 New experimental NVMe driver support</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -592,7 +755,7 @@ const tweaksData = {
         { name: "Disable Update History Sharing", desc: "Stops update tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Update\\Auto" /v AllowCloudSharing /t REG_DWORD /d 0 /f' },
         { name: "Disable Notification Tracking", desc: "Stops notification tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WpnService" /v Start /t REG_DWORD /d 4 /f' },
         { name: "Disable Inking & Typing", desc: "Stops personalized typing", cmd: 'reg add "HKCU\\Software\\Microsoft\\InputPersonalization\\Versioning" /v RestartCount /t REG_DWORD /d 0 /f' },
-        { name: "Disable Malware Submission", desc: "Stops malware tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet" /v DisableBlockAtFirstSeen /t REG_DWORD /d 0 /f' },
+        { name: "Disable Malware Submission", desc: "Stops malware tracking", cmd: 'reg add "reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet" /v DisableBlockAtFirstSeen /t REG_DWORD /d 0 /f' },
         { name: "Disable Recovery Data Sync", desc: "Stops cloud backup tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Recovery" /v AutomaticSyncBackup /t REG_DWORD /d 0 /f' },
         { name: "Disable News Integration", desc: "Disables news feed", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Feed" /v EnableFeed /t REG_DWORD /d 0 /f' },
         { name: "Disable Quick Assist Telemetry", desc: "Stops assistance tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Remote Assistance" /v fAllowToGetHelp /t REG_DWORD /d 0 /f' },
@@ -658,7 +821,17 @@ const tweaksData = {
         { name: "Enable ECE and CWR", desc: "ECN negotiation", cmd: 'netsh int tcp set global ecncapability=enabled' },
         { name: "Set MTU Discovery", desc: "Path MTU enabled", cmd: 'netsh int ipv4 set route interface=* mtu=1500' },
         { name: "Increase SYN Backlog", desc: "Backlog to 1024", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxSynRetrans /t REG_DWORD /d 2 /f' },
-        { name: "Enable TCP Window Scaling", desc: "Window size scaling", cmd: 'netsh int tcp set global wsh=enabled' }
+        { name: "Enable TCP Window Scaling", desc: "Window size scaling", cmd: 'netsh int tcp set global wsh=enabled' },
+        { name: "Disable QoS Packet Scheduler", desc: "Disables QoS", cmd: 'netsh interface tcp set global qosscheduler=disabled' },
+        { name: "Disable Msoxmidi Service", desc: "Removes MIDI over network", cmd: 'sc config msoxmidi start= disabled' },
+        { name: "Disable Windows Search", desc: "Disables indexing", cmd: 'sc config WSearch start= disabled' },
+        { name: "Disable Diagnostic Policy Service", desc: "Stops diagnostics", cmd: 'sc config DPS start= disabled' },
+        { name: "Disable IP Helper", desc: "Stops IPv6 support", cmd: 'sc config iphlpsvc start= disabled' },
+        { name: "Disable SSDP Discovery", desc: "Stops device discovery", cmd: 'sc config SSDPSRV start= disabled' },
+        { name: "Disable UPnP Device Host", desc: "Stops UPnP host", cmd: 'sc config upnphost start= disabled' },
+        { name: "Disable Function Discovery Provider Host", desc: "Stops discovery", cmd: 'sc config fdPHost start= disabled' },
+        { name: "Disable Function Discovery Resource Publication", desc: "Stops resource publication", cmd: 'sc config FDResPub start= disabled' },
+        { name: "Disable Windows Media Player Network Sharing", desc: "Stops media sharing", cmd: 'sc config WMPNetworkSvc start= disabled' }
     ],
 
     bloat: [
@@ -787,7 +960,8 @@ const tweaksData = {
         { name: "Increase System Cache", desc: "More system RAM usage", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v SystemPages /t REG_DWORD /d 0 /f' },
         { name: "Disable VM Compression", desc: "Better performance", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v CompressVirtualMemory /t REG_DWORD /d 0 /f' },
         { name: "Faster Folder View", desc: "Quicker browsing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v DisablePreviewPane /t REG_DWORD /d 1 /f' },
-        { name: "Minimize Startup Programs", desc: "Fewer startup items", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "" /t REG_SZ /d "" /f' }
+        { name: "Minimize Startup Programs", desc: "Fewer startup items", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "" /t REG_SZ /d "" /f' },
+        { name: "New NVMe Driver Experimental", desc: "Enables experimental NVMe driver stack", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 735209102 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 1853569164 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 156965516 /t REG_DWORD /d 1 /f' }
     ]
 };
 
@@ -933,7 +1107,9 @@ function regenerateScript() {
         const idx = parseInt(indexStr, 10);
         const t = tweaksData[cat][idx];
         if (t && t.cmd) {
-            lines.push(t.cmd);
+            // Handle commands that contain newlines or semicolons
+            const cmds = t.cmd.split(/\n|;/).map(c => c.trim()).filter(c => c);
+            cmds.forEach(c => lines.push(c));
         }
     });
 
