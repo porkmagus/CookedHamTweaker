@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>🐷 CookedHamTweaker v3 – Full Tweaks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at top, #1e1b4b 0, #020617 55%);
+            color: #e5e7eb;
+            min-height: 100vh;
+        }
+
+        .app-shell {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .pig-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            background: radial-gradient(circle at 30% 30%, #fecaca 0, #fb7185 40%, #9f1239 100%);
+            box-shadow: 0 0 35px rgba(248, 113, 113, 0.45);
+        }
+
+        .headline {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .headline h1 {
+            font-size: 1.9rem;
+            letter-spacing: 0.03em;
+        }
+
+        .headline small {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.85), rgba(31, 41, 55, 0.85));
+            backdrop-filter: blur(10px);
+            color: #e5e7eb;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill span {
+            font-size: 0.9em;
+            color: #9ca3af;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.12), transparent 55%);
+            background-color: rgba(15, 23, 42, 0.9);
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            box-shadow: 0 22px 45px rgba(15, 23, 42, 0.9);
+            padding: 14px 14px 12px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-header h2 {
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #a5b4fc;
+        }
+
+        .card-header small {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat-chip {
+            flex: 1 1 90px;
+            min-width: 0;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(to right, #020617, #111827);
+            border: 1px solid rgba(55, 65, 81, 0.9);
+        }
+
+        .stat-chip strong {
+            color: #f97316;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        @media (max-width: 620px) {
+            .grid-2 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .field label {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9ca3af;
+        }
+
+        /* UPDATED: darker select dropdown */
+        select,
+        input[type="text"] {
+            border-radius: 999px;
+            border: 1px solid rgba(55, 65, 81, 0.95);
+            background: #020617;
+            color: #e5e7eb;
+            font-size: 0.85rem;
+            padding: 8px 11px;
+            outline: none;
+            appearance: none;
+        }
+
+        select:focus,
+        input[type="text"]:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Dark dropdown options */
+        select option {
+            background-color: #020617;
+            color: #e5e7eb;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            padding: 7px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #fb7185, #f97316);
+            color: #020617;
+            font-weight: 600;
+            box-shadow: 0 14px 35px rgba(248, 113, 113, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(248, 113, 113, 0.5);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            border: 1px solid rgba(55, 65, 81, 0.95);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(31, 41, 55, 0.9);
+        }
+
+        .categories-wrap {
+            margin-top: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.45), #020617 55%);
+            padding: 10px;
+            max-height: 540px;
+            overflow-y: auto;
+        }
+
+        .category-block {
+            border-radius: 10px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(55, 65, 81, 0.85);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .category-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            cursor: pointer;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 64, 175, 0.7));
+        }
+
+        .category-head-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-head-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .category-pill {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            color: #e5e7eb;
+        }
+
+        .category-chevron {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .tweaks-list {
+            max-height: 420px;
+            overflow-y: auto;
+            padding: 4px 2px 6px;
+        }
+
+        .tweak-item {
+            display: flex;
+            gap: 8px;
+            padding: 6px 9px;
+            border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+            cursor: pointer;
+        }
+
+        .tweak-item:last-child {
+            border-bottom: none;
+        }
+
+        .tweak-item:hover {
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .tweak-item input[type="checkbox"] {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .tweak-main {
+            flex: 1;
+        }
+
+        .tweak-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .tweak-desc {
+            font-size: 0.72rem;
+            color: #9ca3af;
+        }
+
+        .code-panel {
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.23), #020617 55%);
+            border-radius: 16px;
+            border: 1px solid rgba(55, 65, 81, 0.98);
+            padding: 14px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-header h2 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #a5b4fc;
+        }
+
+        .code-header span {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .code-box {
+            flex: 1;
+            margin-top: 4px;
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid rgba(31, 41, 55, 0.98);
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 360px;
+        }
+
+        pre {
+            font-family: Consolas, "Cascadia Code", Menlo, monospace;
+            font-size: 0.78rem;
+            color: #7dd3fc;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        /* FLOATING PIGS */
+        .floating-pig {
+            position: fixed;
+            font-size: 2.4rem;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatPig 10s ease-in-out infinite;
+            opacity: 0.75;
+        }
+
+        .floating-pig.pig-1 {
+            left: 8%;
+            top: 18%;
+            animation-duration: 13s;
+        }
+
+        .floating-pig.pig-2 {
+            right: 12%;
+            top: 30%;
+            animation-duration: 11s;
+        }
+
+        .floating-pig.pig-3 {
+            left: 18%;
+            bottom: 12%;
+            animation-duration: 15s;
+        }
+
+        @keyframes floatPig {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            25% {
+                transform: translateY(-18px) translateX(8px) scale(1.05);
+            }
+            50% {
+                transform: translateY(-4px) translateX(-6px) scale(0.98);
+            }
+            75% {
+                transform: translateY(-22px) translateX(4px) scale(1.04);
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app-shell">
+    <header>
+        <div class="pig-badge">🐷</div>
+        <div class="headline">
+            <h1>CookedHamTweaker v3</h1>
+            <small>Opinionated Windows 11 privacy, debloat, and performance script generator.</small>
+        </div>
+    </header>
+
+    <div class="pill-row">
+        <div class="pill">🐖 <span>Crisp your Windows install like bacon, not your telemetry.</span></div>
+        <div class="pill">🧯 <span>No ads, no suggestions, no nags.</span></div>
+        <div class="pill">🎮 <span>Low-latency gaming and snappy UI.</span></div>
+    </div>
+
+    <div class="layout">
+        <!-- LEFT: Controls + Categories -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Profile & Filters</h2>
+                <small><span id="totalCountLabel">0</span> tweaks · <span id="selectedCountLabel">0</span> selected</small>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-chip">
+                    <span>Privacy</span>
+                    <strong id="statPrivacy">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Network</span>
+                    <strong id="statNetwork">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Bloat</span>
+                    <strong id="statBloat">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>General</span>
+                    <strong id="statGeneral">0</strong>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="field">
+                    <label for="profileSelect">Profile</label>
+                    <select id="profileSelect">
+                        <option value="">Manual selection</option>
+                        <option value="privacy">🔒 Hardcore privacy</option>
+                        <option value="gaming">🎮 Gaming focused</option>
+                        <option value="balanced">⚖️ Balanced</option>
+                        <option value="maximum">🚀 Max everything</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="searchInput">Search tweaks</label>
+                    <input type="text" id="searchInput" placeholder="Filter by name or description..." />
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn-primary" type="button" onclick="selectAllTweaks()">Select all visible</button>
+                <button class="btn-ghost" type="button" onclick="clearAllTweaks()">Clear all</button>
+            </div>
+
+            <div class="categories-wrap" id="categoriesContainer">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- RIGHT: Script output -->
+        <div class="code-panel">
+            <div class="code-header">
+                <div>
+                    <h2>Generated Script</h2>
+                    <span>PowerShell-safe commands · Run as Administrator</span>
+                </div>
+            </div>
+            <div class="code-box">
+                <pre id="scriptCode"># Select tweaks on the left to generate a script...</pre>
+            </div>
+            <div class="code-actions">
+                <button class="btn-ghost" type="button" onclick="clearScript()">🗑 Clear</button>
+                <button class="btn-ghost" type="button" onclick="copyScript()">📋 Copy</button>
+                <button class="btn-primary" type="button" onclick="downloadScript()">⬇️ Download .ps1</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating pigs -->
+<div class="floating-pig pig-1">🐷</div>
+<div class="floating-pig pig-2">🐽</div>
+<div class="floating-pig pig-3">🐷</div>
+
+<script>
+const tweaksData = {
+    privacy: [
+        { name: "Disable Telemetry", desc: "Stops all diagnostic data collection", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f' },
+        { name: "Disable Advertising ID", desc: "Prevents Microsoft tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AdvertisingInfo" /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f' },
+        { name: "Disable Activity History", desc: "Disables user activity collection", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v PublishUserActivities /t REG_DWORD /d 0 /f' },
+        { name: "Disable Web Search", desc: "Prevents Bing results in Start", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v DisableWebSearch /t REG_DWORD /d 1 /f' },
+        { name: "Disable Connected Search", desc: "Disables online search suggestions", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f' },
+        { name: "Disable Location Services", desc: "Blocks app location tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors" /v DisableLocation /t REG_DWORD /d 1 /f' },
+        { name: "Disable Online Speech", desc: "Prevents voice data sharing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Speech_OneCore\\Settings\\OnlineSpeechPrivacy" /v HasAccepted /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tailored Experiences", desc: "Stops personalization tracking", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f' },
+        { name: "Disable Feedback", desc: "Hides feedback prompts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v DoNotShowFeedbackNotifications /t REG_DWORD /d 1 /f' },
+        { name: "Disable App Launch Tracking", desc: "Prevents tracking programs", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v Start_TrackProgs /t REG_DWORD /d 0 /f' },
+        { name: "Disable Shared Experiences", desc: "Disables device sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v EnableCdp /t REG_DWORD /d 0 /f' },
+        { name: "Disable Error Reporting", desc: "Stops crash report sending", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting" /v Disabled /t REG_DWORD /d 1 /f' },
+        { name: "Disable Inventory", desc: "Stops inventory tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat" /v DisableInventory /t REG_DWORD /d 1 /f' },
+        { name: "Disable Update P2P", desc: "Stops P2P sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f' },
+        { name: "Disable Suggested Content", desc: "Hides settings suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Handwriting Data", desc: "Stops handwriting tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\InputPersonalization" /v AllowInputPersonalization /t REG_DWORD /d 0 /f' },
+        { name: "Disable Copilot Button", desc: "Removes Copilot from taskbar", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f' },
+        { name: "Disable Wi-Fi Sense", desc: "Prevents WiFi sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config" /v AutoConnectAllowedOEM /t REG_DWORD /d 0 /f' },
+        { name: "Disable Suggested Apps", desc: "Hides app suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338393Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tips", desc: "Disables tips", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338389Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable DiagTrack", desc: "Disables diagnostics", cmd: 'sc config DiagTrack start= disabled' },
+        { name: "Disable dmwappushservice", desc: "Disables push notifications", cmd: 'sc config dmwappushservice start= disabled' },
+        { name: "Disable User Experiences", desc: "Stops experience tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\DiagTrack" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable Sync Settings", desc: "Prevents settings sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\SettingSync" /v SyncPolicy /t REG_DWORD /d 0 /f' },
+        { name: "Disable OneDrive Tracking", desc: "Hides OneDrive notifications", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowSyncProviderNotifications /t REG_DWORD /d 0 /f' },
+        { name: "Disable Consumer Features", desc: "Blocks app auto-install", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f' },
+        { name: "Disable Spotlight Ads", desc: "Hides lock screen ads", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f' },
+        { name: "Hide Recommended", desc: "Hides Start recommendations", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v HideRecommendedSection /t REG_DWORD /d 1 /f' },
+        { name: "Disable Typing Insights", desc: "Stops typing tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Input\\Settings" /v InsightsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Privacy Notifications", desc: "Removes privacy alerts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\SettingSync" /v DisableSettingSync /t REG_DWORD /d 2 /f' },
+        { name: "Disable Consumer Account", desc: "Disables cloud tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\MsKeyCloudStore" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable WAP Push", desc: "Disables notifications", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WapPushSvc" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable OneConnect", desc: "Disables sync service", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\OneConnect" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable Silent Install", desc: "Stops auto installations", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Widget Service", desc: "Disables news widget", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f' },
+        { name: "Disable App Suggestions", desc: "Blocks suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v ContentDeliveryAllowed /t REG_DWORD /d 0 /f' },
+        { name: "Disable Store Recommendations", desc: "Hides Store ads", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-314559Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Remove Bing News App", desc: "Uninstalls Bing News", cmd: 'Get-AppxPackage *BingNews* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Bing Weather App", desc: "Uninstalls Weather app", cmd: 'Get-AppxPackage *BingWeather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Xbox Gaming App", desc: "Uninstalls Xbox app", cmd: 'Get-AppxPackage *GamingApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Feedback Hub", desc: "Uninstalls Feedback app", cmd: 'Get-AppxPackage *WindowsFeedbackHub* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Disable App Store Auto-Update", desc: "Blocks store app updates", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v AutoDownload /t REG_DWORD /d 0 /f' },
+        { name: "Disable Search Indexing Telemetry", desc: "Stops search tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v AllowIndexingEncryptedStoresOrDevices /t REG_DWORD /d 0 /f' },
+        { name: "Disable Cortana Global Activation", desc: "Disables Cortana activation", cmd: 'reg add "HKCU\\Software\\Microsoft\\Personalization\\Settings" /v AcceptedPrivacyPolicy /t REG_DWORD /d 0 /f' },
+        { name: "Disable Timeline Collection", desc: "Stops timeline tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v PublishUserActivities /t REG_DWORD /d 0 /f' },
+        { name: "Disable Recall Feature", desc: "Disables Recall snapshots", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI" /v DisableAIDataAnalysis /t REG_DWORD /d 1 /f' },
+        { name: "Disable Clipboard History Sync", desc: "Stops clipboard cloud sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Clipboard" /v CloudClipboardAutomaticUpload /t REG_DWORD /d 0 /f' },
+        { name: "Disable Cloud Sync", desc: "Stops OneDrive sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\SettingSync" /v MobileDeviceLength /t REG_DWORD /d 0 /f' },
+        { name: "Disable App Recommendations", desc: "Hides Start suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowRecommendations /t REG_DWORD /d 0 /f' },
+        { name: "Disable Suggested Files", desc: "Hides file suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-353696Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Live Tiles", desc: "Disables tile refresh", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\PushNotifications" /v NoToastApplicationNotification /t REG_DWORD /d 1 /f' },
+        { name: "Disable Theme Tracking", desc: "Stops theme tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 1 /f' },
+        { name: "Disable Game DVR Telemetry", desc: "Stops gaming tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f' },
+        { name: "Disable Device Encryption Tracking", desc: "Stops encryption monitoring", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\dmvsc" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable App Diagnostics", desc: "Stops crash reporting", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WerSvc" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable Typing Filter", desc: "Stops keyboard telemetry", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\TabletPC" /v PreventHandwritingDataSharing /t REG_DWORD /d 1 /f' },
+        { name: "Disable Biometric Tracking", desc: "Stops face recognition", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WbioSrvc" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable Update History Sharing", desc: "Stops update tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Update\\Auto" /v AllowCloudSharing /t REG_DWORD /d 0 /f' },
+        { name: "Disable Notification Tracking", desc: "Stops notification tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WpnService" /v Start /t REG_DWORD /d 4 /f' },
+        { name: "Disable Inking & Typing", desc: "Stops personalized typing", cmd: 'reg add "HKCU\\Software\\Microsoft\\InputPersonalization\\Versioning" /v RestartCount /t REG_DWORD /d 0 /f' },
+        { name: "Disable Malware Submission", desc: "Stops malware tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet" /v DisableBlockAtFirstSeen /t REG_DWORD /d 0 /f' },
+        { name: "Disable Recovery Data Sync", desc: "Stops cloud backup tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Recovery" /v AutomaticSyncBackup /t REG_DWORD /d 0 /f' },
+        { name: "Disable News Integration", desc: "Disables news feed", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Feed" /v EnableFeed /t REG_DWORD /d 0 /f' },
+        { name: "Disable Quick Assist Telemetry", desc: "Stops assistance tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Remote Assistance" /v fAllowToGetHelp /t REG_DWORD /d 0 /f' },
+        { name: "Disable Edge Integration", desc: "Stops Edge tracking", cmd: 'reg add "HKCU\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\MuiCache" /v Edge /t REG_SZ /d "" /f' },
+        { name: "Disable Accessibility Tracking", desc: "Stops accessibility tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Accessibility" /v MaxConsecutiveTaps /t REG_DWORD /d 0 /f' },
+        { name: "Disable System Sounds Telemetry", desc: "Stops audio event tracking", cmd: 'reg add "HKCU\\Control Panel\\Sound" /v Beep /t REG_SZ /d "No" /f' },
+        { name: "Disable Mouse Tracking", desc: "Stops mouse pattern tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Input\\Mouse" /v Sensitivity /t REG_DWORD /d 10 /f' }
+    ],
+
+    network: [
+        { name: "Set Default TTL", desc: "Sets TTL to 64", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DefaultTTL /t REG_DWORD /d 64 /f' },
+        { name: "Increase Max User Ports", desc: "Sets ports to 65534", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxUserPort /t REG_DWORD /d 65534 /f' },
+        { name: "Increase TCP Window Size", desc: "Sets window to 64240", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 64240 /f' },
+        { name: "Set Global Max TCP Window", desc: "Sets max window", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v GlobalMaxTcpWindowSize /t REG_DWORD /d 65535 /f' },
+        { name: "Enable PMTU Discovery", desc: "Path MTU Discovery", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnablePMTUDiscovery /t REG_DWORD /d 1 /f' },
+        { name: "Enable SACK Options", desc: "Selective ACK enabled", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v SackOpts /t REG_DWORD /d 1 /f' },
+        { name: "Enable TCP 1323 Options", desc: "RFC 1323 extensions", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v Tcp1323Opts /t REG_DWORD /d 1 /f' },
+        { name: "Set Max Duplicate ACKs", desc: "ACK threshold to 2", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxDupAcks /t REG_DWORD /d 2 /f' },
+        { name: "Keep Alive Time", desc: "Keepalive to 7200000ms", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v KeepAliveTime /t REG_DWORD /d 7200000 /f' },
+        { name: "Set Max Free TCBs", desc: "TCB blocks to 65535", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxFreeTcbs /t REG_DWORD /d 65535 /f' },
+        { name: "Set Max Hash Table Size", desc: "Hash table to 65536", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxHashTableSize /t REG_DWORD /d 65536 /f' },
+        { name: "Disable TCP Chimney", desc: "Disables offload", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnableTCPChimney /t REG_DWORD /d 0 /f' },
+        { name: "Enable Receive Side Scaling", desc: "Multi-core RSS", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnableRSS /t REG_DWORD /d 1 /f' },
+        { name: "Disable Black Hole Detection", desc: "Disables PMTU BH detect", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnablePMTUBHDetect /t REG_DWORD /d 0 /f' },
+        { name: "Disable Network Throttling", desc: "Removes bandwidth limit", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f' },
+        { name: "Set System Responsiveness Gaming", desc: "Prioritizes responsive apps", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 0 /f' },
+        { name: "Set Gaming Task Priority", desc: "Gaming priority high", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v Priority /t REG_DWORD /d 6 /f' },
+        { name: "Disable Task Offload", desc: "Disables offloading", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DisableTaskOffload /t REG_DWORD /d 0 /f' },
+        { name: "Disable ECN Capability", desc: "Disables ECN", cmd: 'netsh int tcp set global ecncapability=disabled' },
+        { name: "Enable TCP Receive Side Scaling", desc: "RSS enabled globally", cmd: 'netsh int tcp set global rss=enabled' },
+        { name: "Disable RSC", desc: "Disables coalescing", cmd: 'netsh int tcp set global rsc=disabled' },
+        { name: "Disable IP Task Offload", desc: "Disables IP offload", cmd: 'netsh int ip set global taskoffload=disabled' },
+        { name: "Set Autotuninglevel to Normal", desc: "Normal tuning", cmd: 'netsh int tcp set global autotuninglevel=normal' },
+        { name: "Set Congestion Provider CUBIC", desc: "CUBIC for throughput", cmd: 'netsh int tcp set supplemental Internet congestionprovider=cubic' },
+        { name: "Set Congestion Provider CTCP", desc: "CTCP for gaming", cmd: 'netsh int tcp set supplemental Internet congestionprovider=ctcp' },
+        { name: "Enable SACK NIC Level", desc: "SACK enabled", cmd: 'netsh int tcp set global sackstate=enabled' },
+        { name: "Disable TCP Delayed ACK", desc: "ACK delay disabled", cmd: 'netsh int tcp set global dca=disabled' },
+        { name: "Optimize MTU Size", desc: "MTU to 1500", cmd: 'netsh int ipv4 set subinterface 1 mtu=1500' },
+        { name: "Enable Gaming GPU Priority", desc: "Max GPU to games", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v GPU Priority /t REG_DWORD /d 8 /f' },
+        { name: "Enable QoS for Gaming", desc: "Gaming traffic priority", cmd: 'netsh int tcp set global ecn=disabled' },
+        { name: "Set TCP Window Auto-Scaling", desc: "TCP window scaling", cmd: 'netsh int tcp set global autotuninglevel=normal' },
+        { name: "Disable TCP Time Stamp", desc: "Removes timestamp option", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v Tcp1323Opts /t REG_DWORD /d 0 /f' },
+        { name: "Enable Fast Open", desc: "TCP Fast Open", cmd: 'netsh int tcp set global fastopen=enabled' },
+        { name: "Set Initial RTO to 1000ms", desc: "RTO to 1000ms", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v InitialRto /t REG_DWORD /d 1000 /f' },
+        { name: "Enable NetDMA", desc: "Network Direct Memory", cmd: 'netsh int tcp set global netdma=enabled' },
+        { name: "Set IP Forward", desc: "IP forwarding enabled", cmd: 'netsh int ip set int * forwarding=enabled' },
+        { name: "Set ARP Cache Timeout", desc: "ARP timeout 60s", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v ArpCacheLife /t REG_DWORD /d 60 /f' },
+        { name: "Disable IGMP", desc: "Disables multicast", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v IgmpLevel /t REG_DWORD /d 0 /f' },
+        { name: "Set UDP Max Datagram Size", desc: "UDP max 65535", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaximumDatagramLength /t REG_DWORD /d 65535 /f' },
+        { name: "Enable FQDN Caching", desc: "Domain name caching", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v CacheLookupCount /t REG_DWORD /d 8 /f' },
+        { name: "Set DNS TTL", desc: "DNS TTL behavior", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxCacheTtl /t REG_DWORD /d 86400 /f' },
+        { name: "Disable SYN-ACK Pacing", desc: "Removes rate limiting", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v SynAttackProtect /t REG_DWORD /d 0 /f' },
+        { name: "Set Connection Timeout", desc: "Timeout to 5 seconds", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpInitialRto /t REG_DWORD /d 5000 /f' },
+        { name: "Enable Window Scaling", desc: "TCP window scaling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 65535 /f' },
+        { name: "Set Max Connections", desc: "Max connections 32", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxConnectionsPerServer /t REG_DWORD /d 32 /f' },
+        { name: "Disable Slow Start", desc: "Aggressive ramp-up", cmd: 'netsh int tcp set global nonsackrttresiliency=disabled' },
+        { name: "Set Retransmit Threshold", desc: "Threshold to 3", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxDataRetransmissions /t REG_DWORD /d 3 /f' },
+        { name: "Enable IP CSUM Offload", desc: "Checksum offload", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DisableTaskOffload /t REG_DWORD /d 0 /f' },
+        { name: "Set Buffer Size", desc: "Buffer to 8MB", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 8388608 /f' },
+        { name: "Enable LLM State", desc: "Long-lived connections", cmd: 'netsh int tcp set global EnableLLM=enabled' },
+        { name: "Disable TIME-WAIT", desc: "TIME_WAIT delay 30s", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpTimedWaitDelay /t REG_DWORD /d 30 /f' },
+        { name: "Set Half-Open Connection Limit", desc: "SYN backlog 512", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxHalfOpen /t REG_DWORD /d 512 /f' },
+        { name: "Enable ECE and CWR", desc: "ECN negotiation", cmd: 'netsh int tcp set global ecncapability=enabled' },
+        { name: "Set MTU Discovery", desc: "Path MTU enabled", cmd: 'netsh int ipv4 set route interface=* mtu=1500' },
+        { name: "Increase SYN Backlog", desc: "Backlog to 1024", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxSynRetrans /t REG_DWORD /d 2 /f' },
+        { name: "Enable TCP Window Scaling", desc: "Window size scaling", cmd: 'netsh int tcp set global wsh=enabled' }
+    ],
+
+    bloat: [
+        { name: "Remove Bing News", desc: "Uninstalls Bing News", cmd: 'Get-AppxPackage *BingNews* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Bing Weather", desc: "Uninstalls Weather app", cmd: 'Get-AppxPackage *BingWeather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Xbox Gaming", desc: "Uninstalls Xbox app", cmd: 'Get-AppxPackage *GamingApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Xbox Game Bar", desc: "Uninstalls Game Bar", cmd: 'Get-AppxPackage *XboxGamingOverlay* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Get Help", desc: "Uninstalls Help app", cmd: 'Get-AppxPackage *GetHelp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Get Started", desc: "Uninstalls Get Started", cmd: 'Get-AppxPackage *GetStarted* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Office Hub", desc: "Uninstalls Office Hub", cmd: 'Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Solitaire", desc: "Uninstalls Solitaire", cmd: 'Get-AppxPackage *SolitaireCollection* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove People App", desc: "Uninstalls Contacts", cmd: 'Get-AppxPackage *People* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Power Automate", desc: "Uninstalls automation", cmd: 'Get-AppxPackage *PowerAutomateDesktop* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove To Do", desc: "Uninstalls Microsoft To Do", cmd: 'Get-AppxPackage *Todos* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Windows Alarms", desc: "Uninstalls Alarms app", cmd: 'Get-AppxPackage *WindowsAlarms* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Feedback Hub", desc: "Uninstalls Feedback app", cmd: 'Get-AppxPackage *WindowsFeedbackHub* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Windows Maps", desc: "Uninstalls Maps app", cmd: 'Get-AppxPackage *WindowsMaps* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Sound Recorder", desc: "Uninstalls Recorder", cmd: 'Get-AppxPackage *SoundRecorder* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Your Phone", desc: "Uninstalls Your Phone", cmd: 'Get-AppxPackage *YourPhone* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Zune Video", desc: "Uninstalls Movies & TV", cmd: 'Get-AppxPackage *ZuneVideo* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Zune Music", desc: "Uninstalls Zune Music", cmd: 'Get-AppxPackage *ZuneMusic* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Windows Camera", desc: "Uninstalls Camera app", cmd: 'Get-AppxPackage *WindowsCamera* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Photos", desc: "Uninstalls Photos app", cmd: 'Get-AppxPackage *Photos* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Mixed Reality", desc: "Uninstalls MR Viewer", cmd: 'Get-AppxPackage *MixedReality* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove 3D Builder", desc: "Uninstalls 3D tool", cmd: 'Get-AppxPackage *3DBuilder* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove OneNote", desc: "Uninstalls OneNote", cmd: 'Get-AppxPackage *OneNote* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Skype", desc: "Uninstalls Skype app", cmd: 'Get-AppxPackage *SkypeApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Remote Desktop", desc: "Uninstalls RDP", cmd: 'Get-AppxPackage *RemoteDesktop* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Print 3D", desc: "Uninstalls 3D Print", cmd: 'Get-AppxPackage *Print3D* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Xbox Overlay", desc: "Uninstalls overlay", cmd: 'Get-AppxPackage *XboxGameOverlay* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Office Lens", desc: "Uninstalls Office Lens", cmd: 'Get-AppxPackage *OfficeLens* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove OneConnect", desc: "Uninstalls OneConnect", cmd: 'Get-AppxPackage *OneConnect* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Office Sway", desc: "Uninstalls Sway", cmd: 'Get-AppxPackage *Sway* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Disable Consumer Features", desc: "Blocks auto-install", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f' },
+        { name: "Disable Silent Install", desc: "Stops silent installs", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Spotlight Ads", desc: "Hides lock screen ads", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f' },
+        { name: "Disable Widget Service", desc: "Disables news widget", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f' },
+        { name: "Hide Recommended", desc: "Hides recommendations", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v HideRecommendedSection /t REG_DWORD /d 1 /f' },
+        { name: "Disable App Suggestions", desc: "Blocks suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v ContentDeliveryAllowed /t REG_DWORD /d 0 /f' },
+        { name: "Disable Store Recommendations", desc: "Hides Store ads", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-314559Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tips and Tricks", desc: "Disables tips", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338389Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Remove Edge Components", desc: "Cleans up Edge", cmd: 'Get-AppxPackage *Edge* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Clear Store Cache", desc: "Clears Store cache", cmd: 'Get-AppxPackage *WindowsStore* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Disable App Auto-Update", desc: "Blocks app updates", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v AutoDownload /t REG_DWORD /d 0 /f' },
+        { name: "Remove Help Files", desc: "Removes help app", cmd: 'Get-AppxPackage *Help* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Calculator", desc: "Uninstalls Calculator", cmd: 'Get-AppxPackage *Calculator* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Notepad", desc: "Uninstalls Notepad", cmd: 'Get-AppxPackage *Notepad* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Paint", desc: "Uninstalls Paint app", cmd: 'Get-AppxPackage *Paint* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Wordpad", desc: "Uninstalls Wordpad", cmd: 'Get-AppxPackage *Wordpad* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Settings Bloat", desc: "Cleans settings", cmd: 'Get-AppxPackage *SettingsApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Disable Quick Share", desc: "Disables sharing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v QuickShare /t REG_DWORD /d 0 /f' },
+        { name: "Remove OneDrive", desc: "Removes OneDrive", cmd: 'Get-AppxPackage *OneDrive* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Disable Games", desc: "Removes Games app", cmd: 'Get-AppxPackage *Games* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Defender GUI", desc: "Removes WinDefend UI", cmd: 'Get-AppxPackage *WindowsDefender* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Whiteboard", desc: "Uninstalls Whiteboard", cmd: 'Get-AppxPackage *Whiteboard* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Lists", desc: "Uninstalls Lists", cmd: 'Get-AppxPackage *Lists* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Family", desc: "Uninstalls Family app", cmd: 'Get-AppxPackage *Family* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Mail", desc: "Uninstalls Mail app", cmd: 'Get-AppxPackage *Mail* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Calendar", desc: "Uninstalls Calendar", cmd: 'Get-AppxPackage *Calendar* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Weather", desc: "Removes Weather", cmd: 'Get-AppxPackage *Weather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove News", desc: "Removes News app", cmd: 'Get-AppxPackage *News* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Cortana", desc: "Removes Cortana", cmd: 'Get-AppxPackage *Cortana* | Remove-AppxPackage -ErrorAction SilentlyContinue' }
+    ],
+
+    general: [
+        { name: "Instant Menu Display", desc: "Menus appear instantly", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v MenuShowDelay /t REG_SZ /d 0 /f' },
+        { name: "Restore Classic Context Menu", desc: "Traditional right-click", cmd: 'reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32" /v "" /t REG_SZ /d "" /f' },
+        { name: "Disable Startup Delay", desc: "Faster Explorer startup", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize" /v StartupDelayInMSec /t REG_DWORD /d 0 /f' },
+        { name: "Disable Shake to Minimize", desc: "Disables shake feature", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v DisallowShaking /t REG_DWORD /d 1 /f' },
+        { name: "Disable Snap Assist", desc: "Removes snap animation", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v DockMoving /t REG_DWORD /d 0 /f' },
+        { name: "Faster App Shutdown", desc: "Apps close in 2 seconds", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v WaitToKillAppTimeout /t REG_SZ /d 2000 /f' },
+        { name: "Faster Hung App Kill", desc: "Detects hangs faster", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v HungAppTimeout /t REG_SZ /d 2000 /f' },
+        { name: "Disable Lock Screen", desc: "Skips lock screen", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Personalization" /v NoLockScreen /t REG_DWORD /d 1 /f' },
+        { name: "Enable Verbose Boot", desc: "Shows boot messages", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v VerboseStatus /t REG_DWORD /d 1 /f' },
+        { name: "Disable Shortcut Suffix", desc: "Removes - Shortcut", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v link /t REG_BINARY /d 00000000 /f' },
+        { name: "Disable Search Suggestions", desc: "Hides search hints", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f' },
+        { name: "Hide People Bar", desc: "Removes People bar", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\People" /v PeopleBand /t REG_DWORD /d 0 /f' },
+        { name: "Disable Sticky Keys", desc: "Disables shortcut", cmd: 'reg add "HKCU\\Control Panel\\Accessibility\\StickyKeys" /v Flags /t REG_SZ /d 506 /f' },
+        { name: "Disable Filter Keys", desc: "Disables shortcut", cmd: 'reg add "HKCU\\Control Panel\\Accessibility\\Keyboard Response" /v Flags /t REG_SZ /d 122 /f' },
+        { name: "Dark Mode - Applications", desc: "Dark mode for apps", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f' },
+        { name: "Dark Mode - System", desc: "Dark mode for OS", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f' },
+        { name: "Disable Transparency", desc: "Removes transparency", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f' },
+        { name: "Show Seconds in Clock", desc: "Shows seconds", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1 /f' },
+        { name: "Disable Mouse Hover Delay", desc: "Faster tooltips", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseHoverTime /t REG_SZ /d 10 /f' },
+        { name: "Disable Notification Center", desc: "Hides notifications", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f' },
+        { name: "Disable Animations", desc: "No UI animations", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f' },
+        { name: "Disable Mouse Acceleration", desc: "Raw mouse input", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseSpeed /t REG_SZ /d 0 /f' },
+        { name: "Disable Mouse Threshold 1", desc: "Acceleration disabled 1/2", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold1 /t REG_SZ /d 0 /f' },
+        { name: "Disable Mouse Threshold 2", desc: "Acceleration disabled 2/2", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold2 /t REG_SZ /d 0 /f' },
+        { name: "Reduce Keyboard Delay", desc: "Minimum delay", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardDelay /t REG_SZ /d 0 /f' },
+        { name: "Maximize Keyboard Repeat", desc: "Maximum repeat rate", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardSpeed /t REG_SZ /d 31 /f' },
+        { name: "Disable Power Throttling", desc: "Full CPU power", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power\\PowerThrottling" /v PowerThrottlingOff /t REG_DWORD /d 1 /f' },
+        { name: "Enable GPU Scheduling", desc: "Hardware GPU scheduling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f' },
+        { name: "Win32 Priority Separation", desc: "Optimizes scheduling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f' },
+        { name: "Disable USB Selective Suspend", desc: "Keeps USB active", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\usbhub\\Parameters" /v DisableSelectiveSuspend /t REG_DWORD /d 1 /f' },
+        { name: "Optimize NTFS", desc: "NTFS memory 2", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem" /v NtfsMemoryUsage /t REG_DWORD /d 2 /f' },
+        { name: "Reduce Interrupt Latency", desc: "Lower latency", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel" /v DebugFlags /t REG_DWORD /d 0 /f' },
+        { name: "Enable Fast Logoff", desc: "Faster logoff", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableLockWorkstation /t REG_DWORD /d 0 /f' },
+        { name: "HID Queue Depth", desc: "Process keys immediately", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\kbdhid\\Parameters" /v KeyboardDataQueueLength /t REG_DWORD /d 1 /f' },
+        { name: "High Precision Pointer", desc: "Balanced sensitivity", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseSensitivity /t REG_SZ /d 10 /f' },
+        { name: "Reduce Visual Effects", desc: "Fewer animations", cmd: 'reg add "HKCU\\Control Panel\\Desktop\\WindowMetrics" /v MinAnimate /t REG_SZ /d 0 /f' },
+        { name: "Disable Wallpaper Blur", desc: "No blur effects", cmd: 'reg add "HKCU\\Control Panel\\Personalization\\Desktop" /v WallpaperStyle /t REG_SZ /d 0 /f' },
+        { name: "Faster Explorer Display", desc: "Better rendering", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v ShellState /t REG_BINARY /d 240000003C2800000000000000000000 /f' },
+        { name: "Disable Cortana Search", desc: "Disables search", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f' },
+        { name: "Disable Narrator", desc: "Hides narrator", cmd: 'reg add "HKCU\\Software\\Microsoft\\Narrator\\NoConsoleSession" /v EchoState /t REG_DWORD /d 0 /f' },
+        { name: "Disable Game Mode", desc: "Disables Game Mode", cmd: 'reg add "HKCU\\Software\\Microsoft\\GameBar" /v UseNexusForGameMode /t REG_DWORD /d 0 /f' },
+        { name: "Disable Game DVR", desc: "Disables recording", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f' },
+        { name: "Faster Search Indexing", desc: "Index faster", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\ContentIndex\\Catalogs\\SystemIndex" /v IsIndexingW2k /t REG_DWORD /d 1 /f' },
+        { name: "Disable Defrag", desc: "Disables defragmentation", cmd: 'sc config defragsvc start= disabled' },
+        { name: "No Forced Restarts", desc: "No forced restarts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoRebootWithLoggedOnUsers /t REG_DWORD /d 1 /f' },
+        { name: "Faster Virtual Memory", desc: "Optimize paging", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v PagingFiles /t REG_MULTI_SZ /d "C:\\\\pagefile.sys 2048 4096" /f' },
+        { name: "Faster Device Setup", desc: "Faster device setup", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Device Installer" /v DisableCoInstallers /t REG_DWORD /d 1 /f' },
+        { name: "Enable Fast Startup", desc: "Faster boot", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power" /v HibernateType /t REG_DWORD /d 2 /f' },
+        { name: "Disable Background Refresh", desc: "Stops background apps", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f' },
+        { name: "Optimize Font Cache", desc: "Better font rendering", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\FontCache" /v Start /t REG_DWORD /d 2 /f' },
+        { name: "Disable Search Indexing", desc: "Faster filesystem", cmd: 'sc config WSearch start= disabled' },
+        { name: "Disable Remote Registry", desc: "Disable remote access", cmd: 'sc config RemoteRegistry start= disabled' },
+        { name: "Disable Windows Update", desc: "Manual updates only", cmd: 'sc config wuauserv start= disabled' },
+        { name: "Disable Print Spooler", desc: "No printer queuing", cmd: 'sc config Spooler start= disabled' },
+        { name: "Disable Superfetch", desc: "Disables prefetch", cmd: 'sc config SysMain start= disabled' },
+        { name: "Reduce UAC Prompts", desc: "Fewer UAC popups", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f' },
+        { name: "Instant File Deletion", desc: "Skip recycle bin", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\BitBucket" /v NukeOnDelete /t REG_DWORD /d 1 /f' },
+        { name: "Faster Copy Speed", desc: "Improved file transfers", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters" /v IRPStackSize /t REG_DWORD /d 32 /f' },
+        { name: "Disable Maintenance", desc: "Stops maintenance", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\Maintenance" /v MaintenanceDisabled /t REG_DWORD /d 1 /f' },
+        { name: "Enable Legacy Boot", desc: "Classic boot display", cmd: 'bcdedit /set {default} quietboot off' },
+        { name: "Increase System Cache", desc: "More system RAM usage", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v SystemPages /t REG_DWORD /d 0 /f' },
+        { name: "Disable VM Compression", desc: "Better performance", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v CompressVirtualMemory /t REG_DWORD /d 0 /f' },
+        { name: "Faster Folder View", desc: "Quicker browsing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v DisablePreviewPane /t REG_DWORD /d 1 /f' },
+        { name: "Minimize Startup Programs", desc: "Fewer startup items", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "" /t REG_SZ /d "" /f' }
+    ]
+};
+
+const categoryIcons = {
+    privacy: "🔒",
+    network: "🌐",
+    bloat: "🧹",
+    general: "⚡"
+};
+
+let currentFilter = "";
+let selectedIds = new Set();
+
+function buildCategories() {
+    const container = document.getElementById("categoriesContainer");
+    container.innerHTML = "";
+
+    Object.keys(tweaksData).forEach(catKey => {
+        const tweaks = tweaksData[catKey];
+
+        const block = document.createElement("div");
+        block.className = "category-block";
+
+        const head = document.createElement("div");
+        head.className = "category-head";
+        head.onclick = () => {
+            const list = block.querySelector(".tweaks-list");
+            list.style.display = list.style.display === "none" ? "block" : "none";
+        };
+
+        const left = document.createElement("div");
+        left.className = "category-head-left";
+
+        const iconSpan = document.createElement("span");
+        iconSpan.textContent = categoryIcons[catKey] || "•";
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "category-head-title";
+        titleSpan.textContent = catKey.charAt(0).toUpperCase() + catKey.slice(1);
+
+        left.appendChild(iconSpan);
+        left.appendChild(titleSpan);
+
+        const countBadge = document.createElement("span");
+        countBadge.className = "category-pill";
+        countBadge.textContent = `${tweaks.length} tweaks`;
+
+        const chevron = document.createElement("span");
+        chevron.className = "category-chevron";
+        chevron.textContent = "▾";
+
+        head.appendChild(left);
+        head.appendChild(countBadge);
+        head.appendChild(chevron);
+
+        const list = document.createElement("div");
+        list.className = "tweaks-list";
+
+        tweaks.forEach((t, index) => {
+            const id = `${catKey}-${index}`;
+            const item = document.createElement("div");
+            item.className = "tweak-item";
+
+            const cb = document.createElement("input");
+            cb.type = "checkbox";
+            cb.id = id;
+            cb.checked = selectedIds.has(id);
+            cb.onclick = e => {
+                e.stopPropagation();
+                toggleSelection(id);
+            };
+
+            const info = document.createElement("div");
+            info.className = "tweak-main";
+
+            const nameDiv = document.createElement("div");
+            nameDiv.className = "tweak-name";
+            nameDiv.textContent = t.name;
+
+            const descDiv = document.createElement("div");
+            descDiv.className = "tweak-desc";
+            descDiv.textContent = t.desc;
+
+            info.appendChild(nameDiv);
+            info.appendChild(descDiv);
+
+            item.appendChild(cb);
+            item.appendChild(info);
+            item.onclick = () => {
+                cb.checked = !cb.checked;
+                toggleSelection(id);
+            };
+
+            list.appendChild(item);
+        });
+
+        block.appendChild(head);
+        block.appendChild(list);
+        container.appendChild(block);
+    });
+
+    updateStats();
+    regenerateScript();
+}
+
+function toggleSelection(id) {
+    if (selectedIds.has(id)) {
+        selectedIds.delete(id);
+    } else {
+        selectedIds.add(id);
+    }
+    updateStats();
+    regenerateScript();
+}
+
+function updateStats() {
+    let p = tweaksData.privacy.length;
+    let n = tweaksData.network.length;
+    let b = tweaksData.bloat.length;
+    let g = tweaksData.general.length;
+
+    document.getElementById("statPrivacy").textContent = p;
+    document.getElementById("statNetwork").textContent = n;
+    document.getElementById("statBloat").textContent = b;
+    document.getElementById("statGeneral").textContent = g;
+
+    document.getElementById("totalCountLabel").textContent = p + n + b + g;
+    document.getElementById("selectedCountLabel").textContent = selectedIds.size;
+}
+
+function regenerateScript() {
+    if (!selectedIds.size) {
+        document.getElementById("scriptCode").textContent =
+            "# Select tweaks on the left to generate a script...";
+        return;
+    }
+    let lines = [];
+    lines.push('Write-Host "CookedHamTweaker – Applying selected tweaks..." -ForegroundColor Magenta');
+    lines.push('Write-Host "Running as Administrator is strongly recommended.`n" -ForegroundColor Yellow');
+
+    selectedIds.forEach(id => {
+        const [cat, indexStr] = id.split("-");
+        const idx = parseInt(indexStr, 10);
+        const t = tweaksData[cat][idx];
+        if (t && t.cmd) {
+            lines.push(t.cmd);
+        }
+    });
+
+    lines.push("");
+    lines.push('Write-Host "`nAll selected tweaks have been executed. A reboot is recommended." -ForegroundColor Green');
+
+    document.getElementById("scriptCode").textContent = lines.join("\n");
+}
+
+function selectAllTweaks() {
+    selectedIds.clear();
+    Object.keys(tweaksData).forEach(cat => {
+        tweaksData[cat].forEach((_, idx) => {
+            selectedIds.add(`${cat}-${idx}`);
+        });
+    });
+    buildCategories();
+}
+
+function clearAllTweaks() {
+    selectedIds.clear();
+    buildCategories();
+}
+
+function copyScript() {
+    const text = document.getElementById("scriptCode").textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Script copied to clipboard.");
+    });
+}
+
+function downloadScript() {
+    const text = document.getElementById("scriptCode").textContent;
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "CookedHamTweaker.ps1";
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function clearScript() {
+    selectedIds.clear();
+    buildCategories();
+}
+
+// Profile selection
+document.getElementById("profileSelect").addEventListener("change", e => {
+    const val = e.target.value;
+    selectedIds.clear();
+
+    if (val === "privacy") {
+        tweaksData.privacy.forEach((_, i) => selectedIds.add(`privacy-${i}`));
+    } else if (val === "gaming") {
+        tweaksData.network.forEach((_, i) => selectedIds.add(`network-${i}`));
+        tweaksData.general.forEach((_, i) => selectedIds.add(`general-${i}`));
+    } else if (val === "balanced") {
+        Object.keys(tweaksData).forEach(cat => {
+            tweaksData[cat].forEach((_, i) => {
+                if (Math.random() > 0.5) selectedIds.add(`${cat}-${i}`);
+            });
+        });
+    } else if (val === "maximum") {
+        selectAllTweaks();
+        return;
+    }
+
+    buildCategories();
+});
+
+// Search filter
+document.getElementById("searchInput").addEventListener("input", e => {
+    currentFilter = e.target.value.toLowerCase();
+    const container = document.getElementById("categoriesContainer");
+    const blocks = container.querySelectorAll(".category-block");
+
+    blocks.forEach((block, catIdx) => {
+        const catKey = Object.keys(tweaksData)[catIdx];
+        const list = block.querySelector(".tweaks-list");
+        const items = list.querySelectorAll(".tweak-item");
+
+        items.forEach((item, idx) => {
+            const t = tweaksData[catKey][idx];
+            const hay = (t.name + " " + t.desc).toLowerCase();
+            item.style.display = currentFilter && !hay.includes(currentFilter) ? "none" : "flex";
+        });
+    });
+});
+
+// init
+buildCategories();
+</script>
+</body>
+</html>
