@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>🐷 CookedHamTweaker v1 – Windows Optimization</title>
+    <title>🐷 CookedHamTweaker v2 – Windows Optimization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -70,6 +70,7 @@
             border-radius: 999px;
             border: 1px solid rgba(148, 163, 184, 0.4);
             background: linear-gradient(to right, rgba(15, 23, 42, 0.85), rgba(31, 41, 55, 0.85));
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             color: #e5e7eb;
             display: inline-flex;
@@ -387,62 +388,7 @@
             justify-content: flex-end;
         }
 
-        .github-link {
-            margin-top: 12px;
-            text-align: center;
-        }
 
-        .github-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(251, 113, 133, 0.15), rgba(249, 115, 22, 0.15));
-            border: 1px solid rgba(251, 113, 133, 0.4);
-            color: #fb7185;
-            font-size: 0.82rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .github-link a:hover {
-            background: linear-gradient(135deg, rgba(251, 113, 133, 0.25), rgba(249, 115, 22, 0.25));
-            border-color: rgba(251, 113, 133, 0.6);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(251, 113, 133, 0.3);
-        }
-
-        .changelog {
-            margin-top: 16px;
-            text-align: center;
-        }
-
-        .changelog-version {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(251, 113, 133, 0.2), rgba(249, 115, 22, 0.2));
-            border: 1px solid rgba(251, 113, 133, 0.3);
-            color: #fb7185;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .changelog-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 0.72rem;
-            color: #9ca3af;
-            text-align: center;
-        }
-
-        .changelog-list li {
-            padding: 2px 0;
-        }
 
         /* FLOATING PIGS */
         .floating-pig {
@@ -586,7 +532,7 @@
     <header>
         <div class="pig-badge">🐷</div>
         <div class="headline">
-            <h1>CookedHamTweaker v1</h1>
+            <h1>CookedHamTweaker v2</h1>
             <small>Opinionated Windows 11 privacy, debloat, and performance script generator.</small>
         </div>
     </header>
@@ -611,16 +557,32 @@
                     <strong id="statPrivacy">0</strong>
                 </div>
                 <div class="stat-chip">
-                    <span>Network</span>
-                    <strong id="statNetwork">0</strong>
+                    <span>Perf</span>
+                    <strong id="statPerformance">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Power</span>
+                    <strong id="statPower">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>UI</span>
+                    <strong id="statUi">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Services</span>
+                    <strong id="statServices">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Updates</span>
+                    <strong id="statUpdates">0</strong>
+                </div>
+                <div class="stat-chip">
+                    <span>Notifs</span>
+                    <strong id="statNotifications">0</strong>
                 </div>
                 <div class="stat-chip">
                     <span>Bloat</span>
-                    <strong id="statBloat">0</strong>
-                </div>
-                <div class="stat-chip">
-                    <span>General</span>
-                    <strong id="statGeneral">0</strong>
+                    <strong id="statBloatware">0</strong>
                 </div>
             </div>
 
@@ -673,14 +635,17 @@
                 </a>
             </div>
             <div class="changelog">
-                <div class="changelog-version">v1.0.0</div>
+                <div class="changelog-version">v2.0.0</div>
                 <ul class="changelog-list">
-                    <li>🐷 Initial release of CookedHamTweaker v1</li>
-                    <li>🔒 Added 68 privacy tweaks</li>
-                    <li>🌐 Added 56 network optimization tweaks</li>
-                    <li>🧹 Added 60 bloatware removal options</li>
-                    <li>⚡ Added 65 general performance tweaks</li>
-                    <li>🚀 New experimental NVMe driver support</li>
+                    <li>🐷 Major update with HamTweak.ps1 integration</li>
+                    <li>🔒 Privacy & Security tweaks</li>
+                    <li>⚡ Performance optimizations</li>
+                    <li>🔋 Power management tweaks</li>
+                    <li>🎨 UI & Visual customizations</li>
+                    <li>⚙️ Windows Services control</li>
+                    <li>🔄 Windows Updates settings</li>
+                    <li>🔔 Notification tweaks</li>
+                    <li>🧹 Bloatware removal</li>
                 </ul>
             </div>
         </div>
@@ -694,147 +659,240 @@
 
 <script>
 const tweaksData = {
+    // ===================================================================================
+    // PRIVACY & SECURITY - From HamTweak.ps1
+    // ===================================================================================
     privacy: [
-        { name: "Disable Telemetry", desc: "Stops all diagnostic data collection", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f' },
-        { name: "Disable Advertising ID", desc: "Prevents Microsoft tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AdvertisingInfo" /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f' },
-        { name: "Disable Activity History", desc: "Disables user activity collection", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v PublishUserActivities /t REG_DWORD /d 0 /f' },
-        { name: "Disable Web Search", desc: "Prevents Bing results in Start", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v DisableWebSearch /t REG_DWORD /d 1 /f' },
-        { name: "Disable Connected Search", desc: "Disables online search suggestions", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v ConnectedSearchUseWeb /t REG_DWORD /d 0 /f' },
-        { name: "Disable Location Services", desc: "Blocks app location tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors" /v DisableLocation /t REG_DWORD /d 1 /f' },
-        { name: "Disable Online Speech", desc: "Prevents voice data sharing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Speech_OneCore\\Settings\\OnlineSpeechPrivacy" /v HasAccepted /t REG_DWORD /d 0 /f' },
-        { name: "Disable Tailored Experiences", desc: "Stops personalization tracking", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f' },
-        { name: "Disable Feedback", desc: "Hides feedback prompts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v DoNotShowFeedbackNotifications /t REG_DWORD /d 1 /f' },
-        { name: "Disable App Launch Tracking", desc: "Prevents tracking programs", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v Start_TrackProgs /t REG_DWORD /d 0 /f' },
-        { name: "Disable Shared Experiences", desc: "Disables device sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v EnableCdp /t REG_DWORD /d 0 /f' },
-        { name: "Disable Error Reporting", desc: "Stops crash report sending", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting" /v Disabled /t REG_DWORD /d 1 /f' },
-        { name: "Disable Inventory", desc: "Stops inventory tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat" /v DisableInventory /t REG_DWORD /d 1 /f' },
-        { name: "Disable Update P2P", desc: "Stops P2P sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f' },
-        { name: "Disable Suggested Content", desc: "Hides settings suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Handwriting Data", desc: "Stops handwriting tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\InputPersonalization" /v AllowInputPersonalization /t REG_DWORD /d 0 /f' },
+        // --- Advertising & Tracking ---
+        { name: "Master Ads Control", desc: "Disable all Microsoft ads and promotional content", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f' },
+        { name: "Disable Personalized Ads", desc: "Turn off behavioral ad targeting", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo" /v Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Advertising ID", desc: "Reset and disable advertising identifier", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo" /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f' },
+        { name: "Disable App Launch Tracking", desc: "Stop tracking which apps you launch", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v Start_TrackProgs /t REG_DWORD /d 0 /f' },
+        { name: "Disable Content Delivery", desc: "Stop dynamic content downloads", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v ContentDeliveryAllowed /t REG_DWORD /d 0 /f' },
+        { name: "Disable Subscribed Content", desc: "Remove Microsoft suggestions", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContentEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable App Suggestions", desc: "Turn off suggested apps in Start", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Pre-installed Apps", desc: "Stop silent app installations", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v PreInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable OEM Pre-installed Apps", desc: "Block OEM bloatware installation", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v OemPreInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Silent App Install", desc: "Prevent background app installs", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Feature Management", desc: "Stop Microsoft feature experiments", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v FeatureManagementEnabled /t REG_DWORD /d 0 /f' },
+        
+        // --- Lock Screen Privacy ---
+        { name: "Disable Windows Spotlight", desc: "Turn off rotating lock screen images", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v RotatingLockScreenEnabled /t REG_DWORD /d 0 /f\nreg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v RotatingLockScreenOverlayEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Lock Screen Fun Facts", desc: "Remove tips from lock screen", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338387Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Lock Screen Notifications", desc: "Hide notifications on locked screen", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings" /v NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK /t REG_DWORD /d 0 /f' },
+        
+        // --- Speech & Voice ---
+        { name: "Disable Online Speech Recognition", desc: "Keep speech processing local", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Speech_OneCore\\Settings\\OnlineSpeechPrivacy" /v HasAccepted /t REG_DWORD /d 0 /f' },
+        { name: "Disable Cortana", desc: "Turn off Cortana assistant", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f' },
+        { name: "Disable Voice Activation", desc: "Turn off Hey Cortana wake phrase", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Speech_OneCore\\Preferences" /v VoiceActivationEnableAboveLockscreen /t REG_DWORD /d 0 /f' },
+        
+        // --- Input & Typing ---
+        { name: "Disable Inking Personalization", desc: "Stop learning from handwriting", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\InputPersonalization" /v RestrictImplicitInkCollection /t REG_DWORD /d 1 /f' },
+        { name: "Disable Typing Personalization", desc: "Stop learning from typing patterns", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\InputPersonalization" /v RestrictImplicitTextCollection /t REG_DWORD /d 1 /f' },
+        { name: "Disable Input Telemetry", desc: "Stop sending typing data to MS", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Input\\TIPC" /v Enabled /t REG_DWORD /d 0 /f' },
+        
+        // --- Telemetry & Diagnostics ---
+        { name: "Set Telemetry to Basic", desc: "Minimize diagnostic data collection", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v AllowTelemetry /t REG_DWORD /d 1 /f' },
+        { name: "Disable Telemetry (RISK)", desc: "Turn off all diagnostic data - may break features", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f', risk: true },
+        { name: "Disable Feedback Requests", desc: "Stop Windows feedback prompts", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Siuf\\Rules" /v NumberOfSIUFInPeriod /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tailored Experiences", desc: "Stop personalized tips based on data", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy" /v TailoredExperiencesWithDiagnosticDataEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Error Reporting", desc: "Dont send crash reports to Microsoft", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Error Reporting" /v Disabled /t REG_DWORD /d 1 /f' },
+        { name: "Disable CEIP", desc: "Opt out of Customer Experience Program", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\SQMClient\\Windows" /v CEIPEnable /t REG_DWORD /d 0 /f' },
+        
+        // --- Location & Sensors ---
+        { name: "Disable Location Services", desc: "Turn off location tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors" /v DisableLocation /t REG_DWORD /d 1 /f' },
+        { name: "Disable Location Scripting", desc: "Prevent apps from using location", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors" /v DisableLocationScripting /t REG_DWORD /d 1 /f' },
+        
+        // --- Camera & Microphone ---
+        { name: "Disable Camera Access", desc: "Block apps from using camera", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy" /v LetAppsAccessCamera /t REG_DWORD /d 2 /f' },
+        { name: "Disable Microphone Access", desc: "Block apps from using microphone", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppPrivacy" /v LetAppsAccessMicrophone /t REG_DWORD /d 2 /f' },
+        
+        // --- Account & Sync ---
+        { name: "Disable Activity History", desc: "Stop tracking your activities", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v EnableActivityFeed /t REG_DWORD /d 0 /f\nreg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v PublishUserActivities /t REG_DWORD /d 0 /f' },
+        { name: "Disable Timeline", desc: "Turn off activity timeline feature", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v EnableActivityFeed /t REG_DWORD /d 0 /f' },
+        { name: "Disable Settings Sync", desc: "Dont sync settings across devices", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SettingSync" /v SyncPolicy /t REG_DWORD /d 5 /f' },
+        { name: "Disable Clipboard Sync", desc: "Dont sync clipboard across devices", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Clipboard" /v EnableClipboardHistory /t REG_DWORD /d 0 /f' },
+        
+        // --- Security Settings ---
+        { name: "Lower UAC (RISK)", desc: "Reduce security prompts - less secure", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f', risk: true },
+        { name: "Normal UAC", desc: "Standard User Account Control", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 5 /f' },
+        { name: "Disable Remote Assistance", desc: "Turn off remote help feature", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Remote Assistance" /v fAllowToGetHelp /t REG_DWORD /d 0 /f' },
+        { name: "Disable Remote Desktop", desc: "Turn off remote desktop access", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f' },
+        
+        // --- Additional Privacy ---
         { name: "Disable Copilot Button", desc: "Removes Copilot from taskbar", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowCopilotButton /t REG_DWORD /d 0 /f' },
-        { name: "Disable Wi-Fi Sense", desc: "Prevents WiFi sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config" /v AutoConnectAllowedOEM /t REG_DWORD /d 0 /f' },
-        { name: "Disable Suggested Apps", desc: "Hides app suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338393Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Tips", desc: "Disables tips", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338389Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable DiagTrack", desc: "Disables diagnostics", cmd: 'sc config DiagTrack start= disabled' },
-        { name: "Disable dmwappushservice", desc: "Disables push notifications", cmd: 'sc config dmwappushservice start= disabled' },
-        { name: "Disable User Experiences", desc: "Stops experience tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\DiagTrack" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable Sync Settings", desc: "Prevents settings sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\SettingSync" /v SyncPolicy /t REG_DWORD /d 0 /f' },
-        { name: "Disable OneDrive Tracking", desc: "Hides OneDrive notifications", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowSyncProviderNotifications /t REG_DWORD /d 0 /f' },
-        { name: "Disable Consumer Features", desc: "Blocks app auto-install", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f' },
-        { name: "Disable Spotlight Ads", desc: "Hides lock screen ads", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f' },
-        { name: "Hide Recommended", desc: "Hides Start recommendations", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v HideRecommendedSection /t REG_DWORD /d 1 /f' },
-        { name: "Disable Typing Insights", desc: "Stops typing tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Input\\Settings" /v InsightsEnabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Privacy Notifications", desc: "Removes privacy alerts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\SettingSync" /v DisableSettingSync /t REG_DWORD /d 2 /f' },
-        { name: "Disable Consumer Account", desc: "Disables cloud tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\MsKeyCloudStore" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable WAP Push", desc: "Disables notifications", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WapPushSvc" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable OneConnect", desc: "Disables sync service", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\OneConnect" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable Silent Install", desc: "Stops auto installations", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Widget Service", desc: "Disables news widget", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f' },
-        { name: "Disable App Suggestions", desc: "Blocks suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v ContentDeliveryAllowed /t REG_DWORD /d 0 /f' },
-        { name: "Disable Store Recommendations", desc: "Hides Store ads", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-314559Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Remove Bing News App", desc: "Uninstalls Bing News", cmd: 'Get-AppxPackage *BingNews* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Bing Weather App", desc: "Uninstalls Weather app", cmd: 'Get-AppxPackage *BingWeather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Xbox Gaming App", desc: "Uninstalls Xbox app", cmd: 'Get-AppxPackage *GamingApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Feedback Hub", desc: "Uninstalls Feedback app", cmd: 'Get-AppxPackage *WindowsFeedbackHub* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Disable App Store Auto-Update", desc: "Blocks store app updates", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v AutoDownload /t REG_DWORD /d 0 /f' },
-        { name: "Disable Search Indexing Telemetry", desc: "Stops search tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search" /v AllowIndexingEncryptedStoresOrDevices /t REG_DWORD /d 0 /f' },
-        { name: "Disable Cortana Global Activation", desc: "Disables Cortana activation", cmd: 'reg add "HKCU\\Software\\Microsoft\\Personalization\\Settings" /v AcceptedPrivacyPolicy /t REG_DWORD /d 0 /f' },
-        { name: "Disable Timeline Collection", desc: "Stops timeline tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System" /v PublishUserActivities /t REG_DWORD /d 0 /f' },
-        { name: "Disable Recall Feature", desc: "Disables Recall snapshots", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI" /v DisableAIDataAnalysis /t REG_DWORD /d 1 /f' },
-        { name: "Disable Clipboard History Sync", desc: "Stops clipboard cloud sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Clipboard" /v CloudClipboardAutomaticUpload /t REG_DWORD /d 0 /f' },
-        { name: "Disable Cloud Sync", desc: "Stops OneDrive sync", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\SettingSync" /v MobileDeviceLength /t REG_DWORD /d 0 /f' },
-        { name: "Disable App Recommendations", desc: "Hides Start suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowRecommendations /t REG_DWORD /d 0 /f' },
-        { name: "Disable Suggested Files", desc: "Hides file suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-353696Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Live Tiles", desc: "Disables tile refresh", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CurrentVersion\\PushNotifications" /v NoToastApplicationNotification /t REG_DWORD /d 1 /f' },
-        { name: "Disable Theme Tracking", desc: "Stops theme tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 1 /f' },
-        { name: "Disable Game DVR Telemetry", desc: "Stops gaming tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f' },
-        { name: "Disable Device Encryption Tracking", desc: "Stops encryption monitoring", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\dmvsc" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable App Diagnostics", desc: "Stops crash reporting", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WerSvc" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable Typing Filter", desc: "Stops keyboard telemetry", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\TabletPC" /v PreventHandwritingDataSharing /t REG_DWORD /d 1 /f' },
-        { name: "Disable Biometric Tracking", desc: "Stops face recognition", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WbioSrvc" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable Update History Sharing", desc: "Stops update tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Update\\Auto" /v AllowCloudSharing /t REG_DWORD /d 0 /f' },
-        { name: "Disable Notification Tracking", desc: "Stops notification tracking", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WpnService" /v Start /t REG_DWORD /d 4 /f' },
-        { name: "Disable Inking & Typing", desc: "Stops personalized typing", cmd: 'reg add "HKCU\\Software\\Microsoft\\InputPersonalization\\Versioning" /v RestartCount /t REG_DWORD /d 0 /f' },
-        { name: "Disable Malware Submission", desc: "Stops malware tracking", cmd: 'reg add "reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet" /v DisableBlockAtFirstSeen /t REG_DWORD /d 0 /f' },
-        { name: "Disable Recovery Data Sync", desc: "Stops cloud backup tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Recovery" /v AutomaticSyncBackup /t REG_DWORD /d 0 /f' },
-        { name: "Disable News Integration", desc: "Disables news feed", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Feed" /v EnableFeed /t REG_DWORD /d 0 /f' },
-        { name: "Disable Quick Assist Telemetry", desc: "Stops assistance tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Remote Assistance" /v fAllowToGetHelp /t REG_DWORD /d 0 /f' },
-        { name: "Disable Edge Integration", desc: "Stops Edge tracking", cmd: 'reg add "HKCU\\Software\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell\\MuiCache" /v Edge /t REG_SZ /d "" /f' },
-        { name: "Disable Accessibility Tracking", desc: "Stops accessibility tracking", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Accessibility" /v MaxConsecutiveTaps /t REG_DWORD /d 0 /f' },
-        { name: "Disable System Sounds Telemetry", desc: "Stops audio event tracking", cmd: 'reg add "HKCU\\Control Panel\\Sound" /v Beep /t REG_SZ /d "No" /f' },
-        { name: "Disable Mouse Tracking", desc: "Stops mouse pattern tracking", cmd: 'reg add "HKCU\\Software\\Microsoft\\Input\\Mouse" /v Sensitivity /t REG_DWORD /d 10 /f' }
+        { name: "Disable Recall Feature", desc: "Disables Recall AI snapshots", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI" /v DisableAIDataAnalysis /t REG_DWORD /d 1 /f' },
+        { name: "Disable Wi-Fi Sense", desc: "Prevents WiFi credential sharing", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config" /v AutoConnectAllowedOEM /t REG_DWORD /d 0 /f' }
     ],
 
-    network: [
-        { name: "Set Default TTL", desc: "Sets TTL to 64", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DefaultTTL /t REG_DWORD /d 64 /f' },
-        { name: "Increase Max User Ports", desc: "Sets ports to 65534", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxUserPort /t REG_DWORD /d 65534 /f' },
-        { name: "Increase TCP Window Size", desc: "Sets window to 64240", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 64240 /f' },
-        { name: "Set Global Max TCP Window", desc: "Sets max window", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v GlobalMaxTcpWindowSize /t REG_DWORD /d 65535 /f' },
-        { name: "Enable PMTU Discovery", desc: "Path MTU Discovery", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnablePMTUDiscovery /t REG_DWORD /d 1 /f' },
-        { name: "Enable SACK Options", desc: "Selective ACK enabled", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v SackOpts /t REG_DWORD /d 1 /f' },
-        { name: "Enable TCP 1323 Options", desc: "RFC 1323 extensions", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v Tcp1323Opts /t REG_DWORD /d 1 /f' },
-        { name: "Set Max Duplicate ACKs", desc: "ACK threshold to 2", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxDupAcks /t REG_DWORD /d 2 /f' },
-        { name: "Keep Alive Time", desc: "Keepalive to 7200000ms", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v KeepAliveTime /t REG_DWORD /d 7200000 /f' },
-        { name: "Set Max Free TCBs", desc: "TCB blocks to 65535", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxFreeTcbs /t REG_DWORD /d 65535 /f' },
-        { name: "Set Max Hash Table Size", desc: "Hash table to 65536", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxHashTableSize /t REG_DWORD /d 65536 /f' },
-        { name: "Disable TCP Chimney", desc: "Disables offload", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnableTCPChimney /t REG_DWORD /d 0 /f' },
-        { name: "Enable Receive Side Scaling", desc: "Multi-core RSS", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnableRSS /t REG_DWORD /d 1 /f' },
-        { name: "Disable Black Hole Detection", desc: "Disables PMTU BH detect", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v EnablePMTUBHDetect /t REG_DWORD /d 0 /f' },
-        { name: "Disable Network Throttling", desc: "Removes bandwidth limit", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f' },
-        { name: "Set System Responsiveness Gaming", desc: "Prioritizes responsive apps", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 0 /f' },
-        { name: "Set Gaming Task Priority", desc: "Gaming priority high", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v Priority /t REG_DWORD /d 6 /f' },
-        { name: "Disable Task Offload", desc: "Disables offloading", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DisableTaskOffload /t REG_DWORD /d 0 /f' },
-        { name: "Disable ECN Capability", desc: "Disables ECN", cmd: 'netsh int tcp set global ecncapability=disabled' },
-        { name: "Enable TCP Receive Side Scaling", desc: "RSS enabled globally", cmd: 'netsh int tcp set global rss=enabled' },
-        { name: "Disable RSC", desc: "Disables coalescing", cmd: 'netsh int tcp set global rsc=disabled' },
-        { name: "Disable IP Task Offload", desc: "Disables IP offload", cmd: 'netsh int ip set global taskoffload=disabled' },
-        { name: "Set Autotuninglevel to Normal", desc: "Normal tuning", cmd: 'netsh int tcp set global autotuninglevel=normal' },
-        { name: "Set Congestion Provider CUBIC", desc: "CUBIC for throughput", cmd: 'netsh int tcp set supplemental Internet congestionprovider=cubic' },
-        { name: "Set Congestion Provider CTCP", desc: "CTCP for gaming", cmd: 'netsh int tcp set supplemental Internet congestionprovider=ctcp' },
-        { name: "Enable SACK NIC Level", desc: "SACK enabled", cmd: 'netsh int tcp set global sackstate=enabled' },
-        { name: "Disable TCP Delayed ACK", desc: "ACK delay disabled", cmd: 'netsh int tcp set global dca=disabled' },
-        { name: "Optimize MTU Size", desc: "MTU to 1500", cmd: 'netsh int ipv4 set subinterface 1 mtu=1500' },
-        { name: "Enable Gaming GPU Priority", desc: "Max GPU to games", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v GPU Priority /t REG_DWORD /d 8 /f' },
-        { name: "Enable QoS for Gaming", desc: "Gaming traffic priority", cmd: 'netsh int tcp set global ecn=disabled' },
-        { name: "Set TCP Window Auto-Scaling", desc: "TCP window scaling", cmd: 'netsh int tcp set global autotuninglevel=normal' },
-        { name: "Disable TCP Time Stamp", desc: "Removes timestamp option", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v Tcp1323Opts /t REG_DWORD /d 0 /f' },
-        { name: "Enable Fast Open", desc: "TCP Fast Open", cmd: 'netsh int tcp set global fastopen=enabled' },
-        { name: "Set Initial RTO to 1000ms", desc: "RTO to 1000ms", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v InitialRto /t REG_DWORD /d 1000 /f' },
-        { name: "Enable NetDMA", desc: "Network Direct Memory", cmd: 'netsh int tcp set global netdma=enabled' },
-        { name: "Set IP Forward", desc: "IP forwarding enabled", cmd: 'netsh int ip set int * forwarding=enabled' },
-        { name: "Set ARP Cache Timeout", desc: "ARP timeout 60s", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v ArpCacheLife /t REG_DWORD /d 60 /f' },
-        { name: "Disable IGMP", desc: "Disables multicast", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v IgmpLevel /t REG_DWORD /d 0 /f' },
-        { name: "Set UDP Max Datagram Size", desc: "UDP max 65535", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaximumDatagramLength /t REG_DWORD /d 65535 /f' },
-        { name: "Enable FQDN Caching", desc: "Domain name caching", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v CacheLookupCount /t REG_DWORD /d 8 /f' },
-        { name: "Set DNS TTL", desc: "DNS TTL behavior", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxCacheTtl /t REG_DWORD /d 86400 /f' },
-        { name: "Disable SYN-ACK Pacing", desc: "Removes rate limiting", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v SynAttackProtect /t REG_DWORD /d 0 /f' },
-        { name: "Set Connection Timeout", desc: "Timeout to 5 seconds", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpInitialRto /t REG_DWORD /d 5000 /f' },
-        { name: "Enable Window Scaling", desc: "TCP window scaling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 65535 /f' },
-        { name: "Set Max Connections", desc: "Max connections 32", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v MaxConnectionsPerServer /t REG_DWORD /d 32 /f' },
-        { name: "Disable Slow Start", desc: "Aggressive ramp-up", cmd: 'netsh int tcp set global nonsackrttresiliency=disabled' },
-        { name: "Set Retransmit Threshold", desc: "Threshold to 3", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxDataRetransmissions /t REG_DWORD /d 3 /f' },
-        { name: "Enable IP CSUM Offload", desc: "Checksum offload", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v DisableTaskOffload /t REG_DWORD /d 0 /f' },
-        { name: "Set Buffer Size", desc: "Buffer to 8MB", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpWindowSize /t REG_DWORD /d 8388608 /f' },
-        { name: "Enable LLM State", desc: "Long-lived connections", cmd: 'netsh int tcp set global EnableLLM=enabled' },
-        { name: "Disable TIME-WAIT", desc: "TIME_WAIT delay 30s", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpTimedWaitDelay /t REG_DWORD /d 30 /f' },
-        { name: "Set Half-Open Connection Limit", desc: "SYN backlog 512", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxHalfOpen /t REG_DWORD /d 512 /f' },
-        { name: "Enable ECE and CWR", desc: "ECN negotiation", cmd: 'netsh int tcp set global ecncapability=enabled' },
-        { name: "Set MTU Discovery", desc: "Path MTU enabled", cmd: 'netsh int ipv4 set route interface=* mtu=1500' },
-        { name: "Increase SYN Backlog", desc: "Backlog to 1024", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters" /v TcpMaxSynRetrans /t REG_DWORD /d 2 /f' },
-        { name: "Enable TCP Window Scaling", desc: "Window size scaling", cmd: 'netsh int tcp set global wsh=enabled' },
-        { name: "Disable QoS Packet Scheduler", desc: "Disables QoS", cmd: 'netsh interface tcp set global qosscheduler=disabled' },
-        { name: "Disable Msoxmidi Service", desc: "Removes MIDI over network", cmd: 'sc config msoxmidi start= disabled' },
-        { name: "Disable Windows Search", desc: "Disables indexing", cmd: 'sc config WSearch start= disabled' },
-        { name: "Disable Diagnostic Policy Service", desc: "Stops diagnostics", cmd: 'sc config DPS start= disabled' },
-        { name: "Disable IP Helper", desc: "Stops IPv6 support", cmd: 'sc config iphlpsvc start= disabled' },
-        { name: "Disable SSDP Discovery", desc: "Stops device discovery", cmd: 'sc config SSDPSRV start= disabled' },
-        { name: "Disable UPnP Device Host", desc: "Stops UPnP host", cmd: 'sc config upnphost start= disabled' },
-        { name: "Disable Function Discovery Provider Host", desc: "Stops discovery", cmd: 'sc config fdPHost start= disabled' },
-        { name: "Disable Function Discovery Resource Publication", desc: "Stops resource publication", cmd: 'sc config FDResPub start= disabled' },
-        { name: "Disable Windows Media Player Network Sharing", desc: "Stops media sharing", cmd: 'sc config WMPNetworkSvc start= disabled' }
+    // ===================================================================================
+    // PERFORMANCE & GAMING - From HamTweak.ps1
+    // ===================================================================================
+    performance: [
+        // --- Game Mode & Gaming ---
+        { name: "Enable Game Mode", desc: "Optimize system for gaming", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\GameBar" /v AutoGameModeEnabled /t REG_DWORD /d 1 /f' },
+        { name: "Disable Game Bar", desc: "Turn off Xbox game overlay", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\GameDVR" /v AppCaptureEnabled /t REG_DWORD /d 0 /f\nreg add "HKCU\\SOFTWARE\\Microsoft\\GameBar" /v UseNexusForGameBarEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Game DVR", desc: "Stop background game recording", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f' },
+        { name: "Disable Game Bar Tips", desc: "Remove gaming overlay tips", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\GameBar" /v ShowStartupPanel /t REG_DWORD /d 0 /f' },
+        { name: "Disable Fullscreen Optimizations", desc: "Legacy fullscreen for older games", cmd: 'reg add "HKCU\\System\\GameConfigStore" /v GameDVR_FSEBehaviorMode /t REG_DWORD /d 2 /f' },
+        { name: "GPU High Priority", desc: "Prioritize graphics processing", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v "GPU Priority" /t REG_DWORD /d 8 /f' },
+        { name: "Game Process Priority", desc: "Higher CPU priority for games", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v Priority /t REG_DWORD /d 6 /f' },
+        { name: "Game Scheduling Category", desc: "Optimize thread scheduling for games", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games" /v "Scheduling Category" /t REG_SZ /d High /f' },
+        { name: "Enable Hardware Acceleration", desc: "Use GPU for rendering", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Avalon.Graphics" /v DisableHWAcceleration /t REG_DWORD /d 0 /f' },
+        { name: "Enable Variable Refresh Rate", desc: "G-Sync/FreeSync support", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences" /v VRROptimizeEnable /t REG_DWORD /d 1 /f' },
+        { name: "Enable HAGS", desc: "Hardware Accelerated GPU Scheduling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f' },
+        { name: "Disable Network Throttling", desc: "Full bandwidth for applications", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v NetworkThrottlingIndex /t REG_DWORD /d 4294967295 /f' },
+        { name: "System Responsiveness", desc: "Prioritize foreground applications", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile" /v SystemResponsiveness /t REG_DWORD /d 0 /f' },
+        { name: "Foreground App Boost", desc: "CPU priority for active window", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f' },
+        { name: "Large System Cache", desc: "Optimize memory for applications", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v LargeSystemCache /t REG_DWORD /d 0 /f' },
+        { name: "Disable Paging Executive", desc: "Keep drivers in RAM", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v DisablePagingExecutive /t REG_DWORD /d 1 /f' },
+        { name: "NTFS Memory Usage", desc: "Optimize NTFS for performance", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem" /v NtfsMemoryUsage /t REG_DWORD /d 2 /f' },
+        { name: "Disable Last Access Update", desc: "Reduce disk writes", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem" /v NtfsDisableLastAccessUpdate /t REG_DWORD /d 1 /f' },
+        { name: "Disable 8.3 Filenames", desc: "Improve NTFS performance", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem" /v NtfsDisable8dot3NameCreation /t REG_DWORD /d 1 /f' },
+        { name: "Optimize Prefetch for SSD", desc: "Configure prefetch for SSD", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters" /v EnablePrefetcher /t REG_DWORD /d 0 /f' },
+        { name: "Optimize Superfetch for SSD", desc: "Configure superfetch for SSD", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters" /v EnableSuperfetch /t REG_DWORD /d 0 /f' },
+        { name: "Best Performance Visual FX", desc: "Disable animations for speed", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f' },
+        { name: "Instant Menu Display", desc: "Faster menu appearance", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v MenuShowDelay /t REG_SZ /d 0 /f' },
+        { name: "Disable Window Animations", desc: "Turn off minimize/maximize effects", cmd: 'reg add "HKCU\\Control Panel\\Desktop\\WindowMetrics" /v MinAnimate /t REG_SZ /d 0 /f' },
+        { name: "Disable Cursor Blink", desc: "Static cursor for less CPU", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v CursorBlinkRate /t REG_SZ /d -1 /f' },
+        { name: "Disable Transparency", desc: "Solid colors for better performance", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f' },
+        { name: "Reduce Boot Timeout", desc: "Faster OS selection timeout", cmd: 'bcdedit /timeout 3' },
+        { name: "Disable Startup Delay", desc: "Launch apps immediately at login", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize" /v StartupDelayInMSec /t REG_DWORD /d 0 /f' },
+        { name: "Disable Auto Maintenance", desc: "Stop scheduled maintenance tasks", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\Maintenance" /v MaintenanceDisabled /t REG_DWORD /d 1 /f' },
+        { name: "Disable Web Search Results", desc: "Search local files only", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f' },
+        { name: "Disable Mouse Acceleration", desc: "Raw mouse input for gaming", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseSpeed /t REG_SZ /d 0 /f\nreg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold1 /t REG_SZ /d 0 /f\nreg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold2 /t REG_SZ /d 0 /f' },
+        { name: "Min Keyboard Delay", desc: "Minimum keyboard delay", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardDelay /t REG_SZ /d 0 /f' },
+        { name: "Max Keyboard Repeat", desc: "Maximum repeat rate", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardSpeed /t REG_SZ /d 31 /f' },
+        { name: "Disable Power Throttling", desc: "Full CPU power always", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power\\PowerThrottling" /v PowerThrottlingOff /t REG_DWORD /d 1 /f' },
+        { name: "Faster App Shutdown", desc: "Apps close faster (2 seconds)", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v WaitToKillAppTimeout /t REG_SZ /d 2000 /f' },
+        { name: "Faster Hung App Kill", desc: "Detect hung apps faster", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v HungAppTimeout /t REG_SZ /d 2000 /f' },
+        { name: "Disable USB Selective Suspend", desc: "Keep USB devices always powered", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\USB" /v DisableSelectiveSuspend /t REG_DWORD /d 1 /f' },
+        { name: "NVMe Driver Experimental", desc: "Enables experimental NVMe driver stack", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 735209102 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 1853569164 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 156965516 /t REG_DWORD /d 1 /f' }
     ],
 
-    bloat: [
+    // ===================================================================================
+    // POWER MANAGEMENT - From HamTweak.ps1
+    // ===================================================================================
+    power: [
+        { name: "Enable Fast Startup", desc: "Hybrid boot for faster startup", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power" /v HiberbootEnabled /t REG_DWORD /d 1 /f' },
+        { name: "Enable Hibernation", desc: "Allow hibernation mode", cmd: 'powercfg /h on' },
+        { name: "Disable Hibernation", desc: "Disable to save disk space", cmd: 'powercfg /h off' },
+        { name: "High Performance Plan", desc: "Maximum performance power plan", cmd: 'powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c' },
+        { name: "Balanced Power Plan", desc: "Balance performance and battery", cmd: 'powercfg /setactive 381b4222-f694-41f0-9685-ff5bb260df2e' },
+        { name: "Ultimate Performance Plan", desc: "Extreme performance (creates plan)", cmd: 'powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61' },
+        { name: "Never Turn Off Display", desc: "Keep monitor always on", cmd: 'powercfg /change monitor-timeout-ac 0' },
+        { name: "Disable Adaptive Brightness", desc: "Manual brightness control only", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\SensorState\\Sensors\\{BF16F0E4-AF24-46BE-A26E-D76A1C0F0F1A}" /v Active /t REG_DWORD /d 0 /f' },
+        { name: "Never Sleep (Plugged In)", desc: "Disable sleep on AC power", cmd: 'powercfg /change standby-timeout-ac 0' },
+        { name: "Never Sleep (Battery)", desc: "Disable sleep on battery", cmd: 'powercfg /change standby-timeout-dc 0' },
+        { name: "Disable Wake Timers", desc: "Prevent scheduled wake-ups", cmd: 'powercfg /setacvalueindex SCHEME_CURRENT SUB_SLEEP RTCWAKE 0' },
+        { name: "Disable USB Selective Suspend", desc: "Keep USB devices always powered", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\USB" /v DisableSelectiveSuspend /t REG_DWORD /d 1 /f' },
+        { name: "Max CPU Performance", desc: "CPU always at 100%", cmd: 'powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PROCTHROTTLEMAX 100' },
+        { name: "Min CPU to 5%", desc: "Allow CPU to idle low", cmd: 'powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR PROCTHROTTLEMIN 5' },
+        { name: "Never Turn Off Hard Disk", desc: "Keep HDD spinning", cmd: 'powercfg /change disk-timeout-ac 0' },
+        { name: "Lid Close Does Nothing", desc: "No action when closing laptop lid", cmd: 'powercfg /setacvalueindex SCHEME_CURRENT SUB_BUTTONS LIDACTION 0' },
+        { name: "Power Button Shuts Down", desc: "Pressing power button shuts down", cmd: 'powercfg /setacvalueindex SCHEME_CURRENT SUB_BUTTONS PBUTTONACTION 3' }
+    ],
+
+    // ===================================================================================
+    // UI & APPEARANCE - From HamTweak.ps1
+    // ===================================================================================
+    ui: [
+        { name: "Enable Dark Mode", desc: "System-wide dark theme", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f\nreg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f' },
+        { name: "Enable Light Mode", desc: "System-wide light theme", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 1 /f\nreg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 1 /f' },
+        { name: "Disable Transparency Effects", desc: "Solid colors for better performance", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f' },
+        { name: "Show Accent on Taskbar", desc: "Colored taskbar and Start menu", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v ColorPrevalence /t REG_DWORD /d 1 /f' },
+        { name: "Taskbar Left Alignment (W11)", desc: "Move taskbar icons to left", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarAl /t REG_DWORD /d 0 /f' },
+        { name: "Taskbar Center Alignment (W11)", desc: "Center taskbar icons", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarAl /t REG_DWORD /d 1 /f' },
+        { name: "Small Taskbar Icons", desc: "Smaller taskbar buttons", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarSmallIcons /t REG_DWORD /d 1 /f' },
+        { name: "Show Taskbar Labels", desc: "Display app names on taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarGlomLevel /t REG_DWORD /d 2 /f' },
+        { name: "Hide Widgets Button", desc: "Remove widgets from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f' },
+        { name: "Hide Chat Button", desc: "Remove Teams chat from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f' },
+        { name: "Hide Task View Button", desc: "Remove virtual desktops button", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowTaskViewButton /t REG_DWORD /d 0 /f' },
+        { name: "Hide Search Box", desc: "Remove search from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f' },
+        { name: "Search Icon Only", desc: "Show search as icon", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 1 /f' },
+        { name: "Hide News and Interests", desc: "Remove news feed from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Feeds" /v ShellFeedsTaskbarViewMode /t REG_DWORD /d 2 /f' },
+        { name: "Hide Cortana Button", desc: "Remove Cortana from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowCortanaButton /t REG_DWORD /d 0 /f' },
+        { name: "Enable End Task (W11)", desc: "Right-click to kill apps from taskbar", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings" /v TaskbarEndTask /t REG_DWORD /d 1 /f' },
+        { name: "Hide Start Menu Suggestions", desc: "No app recommendations in Start", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Hide Recent Apps in Start", desc: "Dont show recently added apps", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Start" /v ShowRecentList /t REG_DWORD /d 0 /f' },
+        { name: "Disable Bing in Start Search", desc: "Local search results only", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f' },
+        { name: "Show File Extensions", desc: "Display .exe, .txt, etc.", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v HideFileExt /t REG_DWORD /d 0 /f' },
+        { name: "Show Hidden Files", desc: "Display hidden files and folders", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v Hidden /t REG_DWORD /d 1 /f' },
+        { name: "Show System Files", desc: "Display protected system files", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowSuperHidden /t REG_DWORD /d 1 /f' },
+        { name: "Enable Item Checkboxes", desc: "Checkboxes for file selection", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v AutoCheckSelect /t REG_DWORD /d 1 /f' },
+        { name: "Show Full Path in Title", desc: "Display full folder path", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\CabinetState" /v FullPath /t REG_DWORD /d 1 /f' },
+        { name: "Classic Context Menu (W11)", desc: "Old right-click menu style", cmd: 'reg add "HKCU\\SOFTWARE\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32" /v "" /t REG_SZ /d "" /f' },
+        { name: "Open Explorer to This PC", desc: "Start in This PC not Quick Access", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v LaunchTo /t REG_DWORD /d 1 /f' },
+        { name: "Hide Recent in Quick Access", desc: "Dont show recent files", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v ShowRecent /t REG_DWORD /d 0 /f' },
+        { name: "Hide Frequent in Quick Access", desc: "Dont show frequent folders", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v ShowFrequent /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tips and Suggestions", desc: "No Windows tip notifications", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SoftLandingEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Welcome Experience", desc: "Skip Windows welcome screens", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-310093Enabled /t REG_DWORD /d 0 /f' }
+    ],
+
+    // ===================================================================================
+    // SERVICES - From HamTweak.ps1
+    // ===================================================================================
+    services: [
+        { name: "Disable Windows Search (RISK)", desc: "Stop search indexing", cmd: 'sc config WSearch start= disabled', risk: true },
+        { name: "Disable SysMain/Superfetch (RISK)", desc: "Stop prefetching", cmd: 'sc config SysMain start= disabled', risk: true },
+        { name: "Disable BITS", desc: "Background file transfers", cmd: 'sc config BITS start= demand' },
+        { name: "Disable DiagTrack (RISK)", desc: "Stop telemetry collection", cmd: 'sc config DiagTrack start= disabled', risk: true },
+        { name: "Disable WAP Push", desc: "Stop dmwappushservice", cmd: 'sc config dmwappushservice start= disabled' },
+        { name: "Disable Diagnostic Service", desc: "Diagnostic Policy Service", cmd: 'sc config DPS start= demand' },
+        { name: "Disable Remote Registry", desc: "Block remote registry access", cmd: 'sc config RemoteRegistry start= disabled' },
+        { name: "Disable Remote Access", desc: "Routing and Remote Access", cmd: 'sc config RemoteAccess start= disabled' },
+        { name: "Disable Remote Desktop", desc: "Terminal Services", cmd: 'sc config TermService start= disabled' },
+        { name: "Disable Xbox Auth", desc: "Xbox Live Auth Manager", cmd: 'sc config XblAuthManager start= disabled' },
+        { name: "Disable Xbox Game Save", desc: "Xbox Live Game Save", cmd: 'sc config XblGameSave start= disabled' },
+        { name: "Disable Xbox Networking", desc: "Xbox Live Networking Service", cmd: 'sc config XboxNetApiSvc start= disabled' },
+        { name: "Disable Xbox Accessory", desc: "Xbox Accessory Management", cmd: 'sc config XboxGipSvc start= disabled' },
+        { name: "Disable Print Spooler (RISK)", desc: "No printing support", cmd: 'sc config Spooler start= disabled', risk: true },
+        { name: "Disable Geolocation", desc: "Location services", cmd: 'sc config lfsvc start= disabled' },
+        { name: "Disable Map Downloads", desc: "Offline maps service", cmd: 'sc config MapsBroker start= disabled' },
+        { name: "Disable Phone Service", desc: "Phone integration service", cmd: 'sc config PhoneSvc start= disabled' },
+        { name: "Disable Retail Demo", desc: "Store demo mode service", cmd: 'sc config RetailDemo start= disabled' },
+        { name: "Disable Wallet Service", desc: "Microsoft Wallet", cmd: 'sc config WalletService start= disabled' },
+        { name: "Disable Media Sharing", desc: "Windows Media Player Network", cmd: 'sc config WMPNetworkSvc start= disabled' },
+        { name: "Disable Sync Host", desc: "OneDrive/Contacts sync", cmd: 'sc config OneSyncSvc start= disabled' },
+        { name: "Disable Insider Service", desc: "Windows Insider Program", cmd: 'sc config wisvc start= disabled' },
+        { name: "Disable Error Reporting Svc", desc: "Windows Error Reporting", cmd: 'sc config WerSvc start= disabled' }
+    ],
+
+    // ===================================================================================
+    // WINDOWS UPDATES - From HamTweak.ps1
+    // ===================================================================================
+    updates: [
+        { name: "Auto Updates Normal", desc: "Standard Windows Update behavior", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoUpdate /t REG_DWORD /d 0 /f\nreg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v AUOptions /t REG_DWORD /d 3 /f' },
+        { name: "Notify Before Download", desc: "Ask before downloading updates", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v AUOptions /t REG_DWORD /d 2 /f' },
+        { name: "Disable Auto Updates (RISK)", desc: "Stops all automatic updates", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoUpdate /t REG_DWORD /d 1 /f', risk: true },
+        { name: "Disable P2P Delivery", desc: "Download only from Microsoft", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f' },
+        { name: "Local P2P Only", desc: "Share updates on local network", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 1 /f' },
+        { name: "Metered Connection", desc: "Treat as metered to limit updates", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList\\DefaultMediaCost" /v Ethernet /t REG_DWORD /d 2 /f' },
+        { name: "No Auto Restart", desc: "Dont restart without permission", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoRebootWithLoggedOnUsers /t REG_DWORD /d 1 /f' },
+        { name: "Defer Feature Updates 365 Days", desc: "Delay new features 365 days", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /v DeferFeatureUpdates /t REG_DWORD /d 1 /f\nreg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /v DeferFeatureUpdatesPeriodInDays /t REG_DWORD /d 365 /f' },
+        { name: "Defer Quality Updates 30 Days", desc: "Delay patches 30 days", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /v DeferQualityUpdates /t REG_DWORD /d 1 /f\nreg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /v DeferQualityUpdatesPeriodInDays /t REG_DWORD /d 30 /f' },
+        { name: "Disable Driver Updates", desc: "Dont auto-update drivers", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate" /v ExcludeWUDriversInQualityUpdate /t REG_DWORD /d 1 /f' }
+    ],
+
+    // ===================================================================================
+    // NOTIFICATIONS & SOUND - From HamTweak.ps1
+    // ===================================================================================
+    notifications: [
+        { name: "Disable All Notifications", desc: "Turn off all system notifications", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PushNotifications" /v ToastEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Hide Lock Screen Notifications", desc: "No notifications on lock screen", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings" /v NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK /t REG_DWORD /d 0 /f' },
+        { name: "Disable Notification Sounds", desc: "Silent notifications", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings" /v NOC_GLOBAL_SETTING_ALLOW_NOTIFICATION_SOUND /t REG_DWORD /d 0 /f' },
+        { name: "Disable Tips Notifications", desc: "No Windows tips", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SoftLandingEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Welcome Experience", desc: "Skip Windows welcome dialogs", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-310093Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Finish Setup Reminders", desc: "Stop setup completion nags", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\UserProfileEngagement" /v ScoobeSystemSettingEnabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Suggested Content", desc: "No suggestions in Settings", cmd: 'reg add "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338393Enabled /t REG_DWORD /d 0 /f' },
+        { name: "Disable Startup Sound", desc: "No sound on Windows boot", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Authentication\\LogonUI\\BootAnimation" /v DisableStartupSound /t REG_DWORD /d 1 /f' },
+        { name: "No Sound Scheme", desc: "Disable all system sounds", cmd: 'reg add "HKCU\\AppEvents\\Schemes" /v "" /t REG_SZ /d ".None" /f' }
+    ],
+
+    // ===================================================================================
+    // BLOATWARE REMOVAL
+    // ===================================================================================
+    bloatware: [
         { name: "Remove Bing News", desc: "Uninstalls Bing News", cmd: 'Get-AppxPackage *BingNews* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Bing Weather", desc: "Uninstalls Weather app", cmd: 'Get-AppxPackage *BingWeather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Xbox Gaming", desc: "Uninstalls Xbox app", cmd: 'Get-AppxPackage *GamingApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
@@ -862,114 +920,26 @@ const tweaksData = {
         { name: "Remove Remote Desktop", desc: "Uninstalls RDP", cmd: 'Get-AppxPackage *RemoteDesktop* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Print 3D", desc: "Uninstalls 3D Print", cmd: 'Get-AppxPackage *Print3D* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Xbox Overlay", desc: "Uninstalls overlay", cmd: 'Get-AppxPackage *XboxGameOverlay* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Office Lens", desc: "Uninstalls Office Lens", cmd: 'Get-AppxPackage *OfficeLens* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove OneConnect", desc: "Uninstalls OneConnect", cmd: 'Get-AppxPackage *OneConnect* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Office Sway", desc: "Uninstalls Sway", cmd: 'Get-AppxPackage *Sway* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Disable Consumer Features", desc: "Blocks auto-install", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f' },
-        { name: "Disable Silent Install", desc: "Stops silent installs", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Spotlight Ads", desc: "Hides lock screen ads", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\CloudContent" /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f' },
-        { name: "Disable Widget Service", desc: "Disables news widget", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh" /v AllowNewsAndInterests /t REG_DWORD /d 0 /f' },
-        { name: "Hide Recommended", desc: "Hides recommendations", cmd: 'reg add "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer" /v HideRecommendedSection /t REG_DWORD /d 1 /f' },
-        { name: "Disable App Suggestions", desc: "Blocks suggestions", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v ContentDeliveryAllowed /t REG_DWORD /d 0 /f' },
-        { name: "Disable Store Recommendations", desc: "Hides Store ads", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-314559Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Disable Tips and Tricks", desc: "Disables tips", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v SubscribedContent-338389Enabled /t REG_DWORD /d 0 /f' },
-        { name: "Remove Edge Components", desc: "Cleans up Edge", cmd: 'Get-AppxPackage *Edge* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Clear Store Cache", desc: "Clears Store cache", cmd: 'Get-AppxPackage *WindowsStore* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Disable App Auto-Update", desc: "Blocks app updates", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager" /v AutoDownload /t REG_DWORD /d 0 /f' },
-        { name: "Remove Help Files", desc: "Removes help app", cmd: 'Get-AppxPackage *Help* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Calculator", desc: "Uninstalls Calculator", cmd: 'Get-AppxPackage *Calculator* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Notepad", desc: "Uninstalls Notepad", cmd: 'Get-AppxPackage *Notepad* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Paint", desc: "Uninstalls Paint app", cmd: 'Get-AppxPackage *Paint* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Wordpad", desc: "Uninstalls Wordpad", cmd: 'Get-AppxPackage *Wordpad* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Settings Bloat", desc: "Cleans settings", cmd: 'Get-AppxPackage *SettingsApp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Disable Quick Share", desc: "Disables sharing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v QuickShare /t REG_DWORD /d 0 /f' },
-        { name: "Remove OneDrive", desc: "Removes OneDrive", cmd: 'Get-AppxPackage *OneDrive* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Disable Games", desc: "Removes Games app", cmd: 'Get-AppxPackage *Games* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Defender GUI", desc: "Removes WinDefend UI", cmd: 'Get-AppxPackage *WindowsDefender* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Whiteboard", desc: "Uninstalls Whiteboard", cmd: 'Get-AppxPackage *Whiteboard* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Lists", desc: "Uninstalls Lists", cmd: 'Get-AppxPackage *Lists* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Family", desc: "Uninstalls Family app", cmd: 'Get-AppxPackage *Family* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Mail", desc: "Uninstalls Mail app", cmd: 'Get-AppxPackage *Mail* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
         { name: "Remove Calendar", desc: "Uninstalls Calendar", cmd: 'Get-AppxPackage *Calendar* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Weather", desc: "Removes Weather", cmd: 'Get-AppxPackage *Weather* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove News", desc: "Removes News app", cmd: 'Get-AppxPackage *News* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
-        { name: "Remove Cortana", desc: "Removes Cortana", cmd: 'Get-AppxPackage *Cortana* | Remove-AppxPackage -ErrorAction SilentlyContinue' }
-    ],
-
-    general: [
-        { name: "Instant Menu Display", desc: "Menus appear instantly", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v MenuShowDelay /t REG_SZ /d 0 /f' },
-        { name: "Restore Classic Context Menu", desc: "Traditional right-click", cmd: 'reg add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32" /v "" /t REG_SZ /d "" /f' },
-        { name: "Disable Startup Delay", desc: "Faster Explorer startup", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize" /v StartupDelayInMSec /t REG_DWORD /d 0 /f' },
-        { name: "Disable Shake to Minimize", desc: "Disables shake feature", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v DisallowShaking /t REG_DWORD /d 1 /f' },
-        { name: "Disable Snap Assist", desc: "Removes snap animation", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v DockMoving /t REG_DWORD /d 0 /f' },
-        { name: "Faster App Shutdown", desc: "Apps close in 2 seconds", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v WaitToKillAppTimeout /t REG_SZ /d 2000 /f' },
-        { name: "Faster Hung App Kill", desc: "Detects hangs faster", cmd: 'reg add "HKCU\\Control Panel\\Desktop" /v HungAppTimeout /t REG_SZ /d 2000 /f' },
-        { name: "Disable Lock Screen", desc: "Skips lock screen", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Personalization" /v NoLockScreen /t REG_DWORD /d 1 /f' },
-        { name: "Enable Verbose Boot", desc: "Shows boot messages", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v VerboseStatus /t REG_DWORD /d 1 /f' },
-        { name: "Disable Shortcut Suffix", desc: "Removes - Shortcut", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v link /t REG_BINARY /d 00000000 /f' },
-        { name: "Disable Search Suggestions", desc: "Hides search hints", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v DisableSearchBoxSuggestions /t REG_DWORD /d 1 /f' },
-        { name: "Hide People Bar", desc: "Removes People bar", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\People" /v PeopleBand /t REG_DWORD /d 0 /f' },
-        { name: "Disable Sticky Keys", desc: "Disables shortcut", cmd: 'reg add "HKCU\\Control Panel\\Accessibility\\StickyKeys" /v Flags /t REG_SZ /d 506 /f' },
-        { name: "Disable Filter Keys", desc: "Disables shortcut", cmd: 'reg add "HKCU\\Control Panel\\Accessibility\\Keyboard Response" /v Flags /t REG_SZ /d 122 /f' },
-        { name: "Dark Mode - Applications", desc: "Dark mode for apps", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f' },
-        { name: "Dark Mode - System", desc: "Dark mode for OS", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v SystemUsesLightTheme /t REG_DWORD /d 0 /f' },
-        { name: "Disable Transparency", desc: "Removes transparency", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize" /v EnableTransparency /t REG_DWORD /d 0 /f' },
-        { name: "Show Seconds in Clock", desc: "Shows seconds", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v ShowSecondsInSystemClock /t REG_DWORD /d 1 /f' },
-        { name: "Disable Mouse Hover Delay", desc: "Faster tooltips", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseHoverTime /t REG_SZ /d 10 /f' },
-        { name: "Disable Notification Center", desc: "Hides notifications", cmd: 'reg add "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer" /v DisableNotificationCenter /t REG_DWORD /d 1 /f' },
-        { name: "Disable Animations", desc: "No UI animations", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f' },
-        { name: "Disable Mouse Acceleration", desc: "Raw mouse input", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseSpeed /t REG_SZ /d 0 /f' },
-        { name: "Disable Mouse Threshold 1", desc: "Acceleration disabled 1/2", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold1 /t REG_SZ /d 0 /f' },
-        { name: "Disable Mouse Threshold 2", desc: "Acceleration disabled 2/2", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseThreshold2 /t REG_SZ /d 0 /f' },
-        { name: "Reduce Keyboard Delay", desc: "Minimum delay", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardDelay /t REG_SZ /d 0 /f' },
-        { name: "Maximize Keyboard Repeat", desc: "Maximum repeat rate", cmd: 'reg add "HKCU\\Control Panel\\Keyboard" /v KeyboardSpeed /t REG_SZ /d 31 /f' },
-        { name: "Disable Power Throttling", desc: "Full CPU power", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power\\PowerThrottling" /v PowerThrottlingOff /t REG_DWORD /d 1 /f' },
-        { name: "Enable GPU Scheduling", desc: "Hardware GPU scheduling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f' },
-        { name: "Win32 Priority Separation", desc: "Optimizes scheduling", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl" /v Win32PrioritySeparation /t REG_DWORD /d 38 /f' },
-        { name: "Disable USB Selective Suspend", desc: "Keeps USB active", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\usbhub\\Parameters" /v DisableSelectiveSuspend /t REG_DWORD /d 1 /f' },
-        { name: "Optimize NTFS", desc: "NTFS memory 2", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem" /v NtfsMemoryUsage /t REG_DWORD /d 2 /f' },
-        { name: "Reduce Interrupt Latency", desc: "Lower latency", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel" /v DebugFlags /t REG_DWORD /d 0 /f' },
-        { name: "Enable Fast Logoff", desc: "Faster logoff", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableLockWorkstation /t REG_DWORD /d 0 /f' },
-        { name: "HID Queue Depth", desc: "Process keys immediately", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\kbdhid\\Parameters" /v KeyboardDataQueueLength /t REG_DWORD /d 1 /f' },
-        { name: "High Precision Pointer", desc: "Balanced sensitivity", cmd: 'reg add "HKCU\\Control Panel\\Mouse" /v MouseSensitivity /t REG_SZ /d 10 /f' },
-        { name: "Reduce Visual Effects", desc: "Fewer animations", cmd: 'reg add "HKCU\\Control Panel\\Desktop\\WindowMetrics" /v MinAnimate /t REG_SZ /d 0 /f' },
-        { name: "Disable Wallpaper Blur", desc: "No blur effects", cmd: 'reg add "HKCU\\Control Panel\\Personalization\\Desktop" /v WallpaperStyle /t REG_SZ /d 0 /f' },
-        { name: "Faster Explorer Display", desc: "Better rendering", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer" /v ShellState /t REG_BINARY /d 240000003C2800000000000000000000 /f' },
-        { name: "Disable Cortana Search", desc: "Disables search", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f' },
-        { name: "Disable Narrator", desc: "Hides narrator", cmd: 'reg add "HKCU\\Software\\Microsoft\\Narrator\\NoConsoleSession" /v EchoState /t REG_DWORD /d 0 /f' },
-        { name: "Disable Game Mode", desc: "Disables Game Mode", cmd: 'reg add "HKCU\\Software\\Microsoft\\GameBar" /v UseNexusForGameMode /t REG_DWORD /d 0 /f' },
-        { name: "Disable Game DVR", desc: "Disables recording", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f' },
-        { name: "Faster Search Indexing", desc: "Index faster", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\ContentIndex\\Catalogs\\SystemIndex" /v IsIndexingW2k /t REG_DWORD /d 1 /f' },
-        { name: "Disable Defrag", desc: "Disables defragmentation", cmd: 'sc config defragsvc start= disabled' },
-        { name: "No Forced Restarts", desc: "No forced restarts", cmd: 'reg add "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU" /v NoAutoRebootWithLoggedOnUsers /t REG_DWORD /d 1 /f' },
-        { name: "Faster Virtual Memory", desc: "Optimize paging", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v PagingFiles /t REG_MULTI_SZ /d "C:\\\\pagefile.sys 2048 4096" /f' },
-        { name: "Faster Device Setup", desc: "Faster device setup", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Device Installer" /v DisableCoInstallers /t REG_DWORD /d 1 /f' },
-        { name: "Enable Fast Startup", desc: "Faster boot", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power" /v HibernateType /t REG_DWORD /d 2 /f' },
-        { name: "Disable Background Refresh", desc: "Stops background apps", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications" /v GlobalUserDisabled /t REG_DWORD /d 1 /f' },
-        { name: "Optimize Font Cache", desc: "Better font rendering", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\FontCache" /v Start /t REG_DWORD /d 2 /f' },
-        { name: "Disable Search Indexing", desc: "Faster filesystem", cmd: 'sc config WSearch start= disabled' },
-        { name: "Disable Remote Registry", desc: "Disable remote access", cmd: 'sc config RemoteRegistry start= disabled' },
-        { name: "Disable Windows Update", desc: "Manual updates only", cmd: 'sc config wuauserv start= disabled' },
-        { name: "Disable Print Spooler", desc: "No printer queuing", cmd: 'sc config Spooler start= disabled' },
-        { name: "Disable Superfetch", desc: "Disables prefetch", cmd: 'sc config SysMain start= disabled' },
-        { name: "Reduce UAC Prompts", desc: "Fewer UAC popups", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v ConsentPromptBehaviorAdmin /t REG_DWORD /d 0 /f' },
-        { name: "Instant File Deletion", desc: "Skip recycle bin", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\BitBucket" /v NukeOnDelete /t REG_DWORD /d 1 /f' },
-        { name: "Faster Copy Speed", desc: "Improved file transfers", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters" /v IRPStackSize /t REG_DWORD /d 32 /f' },
-        { name: "Disable Maintenance", desc: "Stops maintenance", cmd: 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\Maintenance" /v MaintenanceDisabled /t REG_DWORD /d 1 /f' },
-        { name: "Enable Legacy Boot", desc: "Classic boot display", cmd: 'bcdedit /set {default} quietboot off' },
-        { name: "Increase System Cache", desc: "More system RAM usage", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v SystemPages /t REG_DWORD /d 0 /f' },
-        { name: "Disable VM Compression", desc: "Better performance", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management" /v CompressVirtualMemory /t REG_DWORD /d 0 /f' },
-        { name: "Faster Folder View", desc: "Quicker browsing", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v DisablePreviewPane /t REG_DWORD /d 1 /f' },
-        { name: "Minimize Startup Programs", desc: "Fewer startup items", cmd: 'reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "" /t REG_SZ /d "" /f' },
-        { name: "New NVMe Driver Experimental", desc: "Enables experimental NVMe driver stack", cmd: 'reg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 735209102 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 1853569164 /t REG_DWORD /d 1 /f\nreg add "HKLM\\SYSTEM\\CurrentControlSet\\Policies\\Microsoft\\FeatureManagement\\Overrides" /v 156965516 /t REG_DWORD /d 1 /f' }
+        { name: "Remove Cortana", desc: "Removes Cortana", cmd: 'Get-AppxPackage *Cortana* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove OneDrive", desc: "Removes OneDrive", cmd: 'Get-AppxPackage *OneDrive* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Clipchamp", desc: "Uninstalls Clipchamp", cmd: 'Get-AppxPackage *Clipchamp* | Remove-AppxPackage -ErrorAction SilentlyContinue' },
+        { name: "Remove Microsoft Teams", desc: "Uninstalls Teams", cmd: 'Get-AppxPackage *Teams* | Remove-AppxPackage -ErrorAction SilentlyContinue' }
     ]
 };
 
 const categoryIcons = {
     privacy: "🔒",
-    network: "🌐",
-    bloat: "🧹",
-    general: "⚡"
+    performance: "⚡",
+    power: "🔋",
+    ui: "🎨",
+    services: "⚙️",
+    updates: "🔄",
+    notifications: "🔔",
+    bloatware: "🧹"
 };
 
 let currentFilter = "";
@@ -1079,16 +1049,24 @@ function toggleSelection(id) {
 
 function updateStats() {
     let p = tweaksData.privacy.length;
-    let n = tweaksData.network.length;
-    let b = tweaksData.bloat.length;
-    let g = tweaksData.general.length;
+    let perf = tweaksData.performance.length;
+    let pwr = tweaksData.power.length;
+    let u = tweaksData.ui.length;
+    let s = tweaksData.services.length;
+    let upd = tweaksData.updates.length;
+    let n = tweaksData.notifications.length;
+    let b = tweaksData.bloatware.length;
 
     document.getElementById("statPrivacy").textContent = p;
-    document.getElementById("statNetwork").textContent = n;
-    document.getElementById("statBloat").textContent = b;
-    document.getElementById("statGeneral").textContent = g;
+    document.getElementById("statPerformance").textContent = perf;
+    document.getElementById("statPower").textContent = pwr;
+    document.getElementById("statUi").textContent = u;
+    document.getElementById("statServices").textContent = s;
+    document.getElementById("statUpdates").textContent = upd;
+    document.getElementById("statNotifications").textContent = n;
+    document.getElementById("statBloatware").textContent = b;
 
-    document.getElementById("totalCountLabel").textContent = p + n + b + g;
+    document.getElementById("totalCountLabel").textContent = p + perf + pwr + u + s + upd + n + b;
     document.getElementById("selectedCountLabel").textContent = selectedIds.size;
 }
 
@@ -1164,9 +1142,12 @@ document.getElementById("profileSelect").addEventListener("change", e => {
 
     if (val === "privacy") {
         tweaksData.privacy.forEach((_, i) => selectedIds.add(`privacy-${i}`));
+        tweaksData.notifications.forEach((_, i) => selectedIds.add(`notifications-${i}`));
     } else if (val === "gaming") {
-        tweaksData.network.forEach((_, i) => selectedIds.add(`network-${i}`));
-        tweaksData.general.forEach((_, i) => selectedIds.add(`general-${i}`));
+        tweaksData.performance.forEach((_, i) => selectedIds.add(`performance-${i}`));
+        tweaksData.power.forEach((_, i) => selectedIds.add(`power-${i}`));
+        tweaksData.ui.forEach((_, i) => selectedIds.add(`ui-${i}`));
+        tweaksData.services.forEach((_, i) => selectedIds.add(`services-${i}`));
     } else if (val === "balanced") {
         Object.keys(tweaksData).forEach(cat => {
             tweaksData[cat].forEach((_, i) => {
