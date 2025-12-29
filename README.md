@@ -9,7 +9,8 @@
 
 CookedHamTweaker is an opinionated Windows 11/10 **privacy, debloat, and performance script generator**. It provides a sleek web-based interface to customize and generate PowerShell scripts that optimize your Windows installation.
 
-![CookedHamTweaker Screenshot](https://via.placeholder.com/800x450?text=CookedHamTweaker+v2+Screenshot)
+![CookedHamTweaker Screenshot](<img width="997" height="708" alt="image" src="https://github.com/user-attachments/assets/227fe3d0-367b-4d97-85da-6aa67cb0ac5b" />
+)
 
 ## ✨ Features
 
@@ -223,3 +224,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   <br>
   <a href="https://github.com/porkmagus/CookedHamTweaker">⭐ Star this repo if you found it useful!</a>
 </p>
+
